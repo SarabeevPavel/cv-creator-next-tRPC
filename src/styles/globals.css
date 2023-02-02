@@ -26,7 +26,13 @@
     @apply h-10 rounded-xl bg-gray-800 px-3 py-2.5 text-sm text-white/90;
   }
   .field-container {
-    @apply my-5 flex flex-col px-2;
+    @apply flex items-center;
+  }
+  .default-button {
+    @apply grid h-12 w-40 place-items-center rounded-md bg-blue-600 transition hover:bg-blue-500 hover:text-white disabled:bg-gray-500 disabled:hover:bg-gray-500 disabled:hover:text-black;
+  }
+  .default-input {
+    @apply h-9 w-full rounded-lg bg-transparent px-2 text-sm outline-0 ring-0 hover:bg-white/20 focus:bg-white/20;
   }
 }
 
