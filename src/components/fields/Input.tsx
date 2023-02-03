@@ -1,10 +1,11 @@
 import type { ReactNode } from "react";
 
 interface InputProps {
-  onChange: (e: any) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
   label?: string | ReactNode;
   value: string;
+  styles?: string;
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -12,16 +13,21 @@ export const Input: React.FC<InputProps> = ({
   placeholder,
   label,
   value,
+  styles,
 }) => {
   return (
-    <div className="field-container mb-1 ">
-      <label className="w-1/8 text-sm first-letter:uppercase">
+    <div className={`field-container mb-1 ${styles ? styles : ""}`}>
+      <label
+        className={`w-1/8 text-sm ${
+          label ? "mr-1" : ""
+        } first-letter:uppercase`}
+      >
         {label ? label : ""}
       </label>
       <input
         onChange={onChange}
         type="text"
-        className="default-input w-7/8 ml-1"
+        className={`default-input w-7/8 h-9 ${styles ? styles : ""}`}
         placeholder={placeholder}
         value={value}
       />

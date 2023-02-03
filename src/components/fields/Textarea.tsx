@@ -1,14 +1,13 @@
-import { ButtonGenerate } from "../assets";
-
 interface TextareaProps {
   label?: string;
   placeholder?: string;
-  onChange: (e: any) => void;
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   position?: string;
   onGenerate?: () => void;
   onContinue?: (startText: string) => void;
   value: string;
   isLoading?: boolean;
+  styles?: string;
 }
 
 export const Textarea: React.FC<TextareaProps> = ({
@@ -20,18 +19,20 @@ export const Textarea: React.FC<TextareaProps> = ({
   onContinue,
   value,
   isLoading,
+  styles,
 }) => {
   return (
-    <div className="field-container">
-      <label className="mb-1 first-letter:uppercase">{label}</label>
+    <div className={`field-container flex flex-col`}>
+      <label className="mb-1 font-semibold uppercase">{label}</label>
       <textarea
         onChange={onChange}
-        className="input-sm hide-scrollbar h-40 resize-none"
+        className={`default-input resize-none ${styles ? styles : ""}`}
         placeholder={placeholder}
         maxLength={300}
         value={value}
+        style={{ height: "" }}
       />
-      <div className="flex gap-3">
+      {/* <div className="flex gap-3">
         {onGenerate !== undefined ? (
           <ButtonGenerate
             disabledConfig={
@@ -55,7 +56,7 @@ export const Textarea: React.FC<TextareaProps> = ({
             styles=""
           />
         ) : null}
-      </div>
+      </div> */}
     </div>
   );
 };

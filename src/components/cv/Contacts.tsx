@@ -6,7 +6,7 @@ import { HiLocationMarker } from "react-icons/hi";
 
 interface ContactsProps {
   user: UserType;
-  onChange: (newUser: UserType) => void;
+  onChange: (updatedUser: UserType) => void;
 }
 
 export const Contacts: React.FC<ContactsProps> = ({ user, onChange }) => {

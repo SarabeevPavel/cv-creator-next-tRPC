@@ -1,6 +1,11 @@
 import Image from "next/image";
 import type { UserType } from "../../utils";
 import { Contacts } from "./Contacts";
+import { Languages } from "./Languages";
+import { Profile } from "./Profile";
+import { Summary } from "./Summary";
+import { Stack } from "./Stack";
+import { Projects } from "./Projects";
 
 interface ViewerProps {
   user: UserType;
@@ -22,16 +27,27 @@ export const Viewer: React.FC<ViewerProps> = ({ user, onChange }) => {
               height={1000}
             />
           </div>
-          <div role="contacts" className="px-2 py-4 text-white/90">
+          <div role="contacts" className="container text-white/90">
             <Contacts user={user} onChange={onChange} />
           </div>
-          <div role="languages"></div>
+          <div role="languages" className="container text-white/90">
+            <Languages user={user} onChange={onChange} />
+          </div>
         </div>
-        <div role="user-about-stack" className="w-3/5">
-          <div role="name,position"></div>
-          <div role="summary"></div>
-          <div role="stack"></div>
-          <div role="projects"></div>
+        <div role="user-about-stack" className="w-3/5 text-blue-600">
+          <div role="name,position" className="h-1/8 container">
+            <Profile user={user} onChange={onChange} />
+          </div>
+          <div role="summary" className="container">
+            <Summary user={user} onChange={onChange} />
+          </div>
+
+          <div role="stack" className="container">
+            <Stack user={user} onChange={onChange} />
+          </div>
+          <div role="projects" className="container">
+            <Projects user={user} onChange={onChange} />
+          </div>
         </div>
       </div>
     </div>
