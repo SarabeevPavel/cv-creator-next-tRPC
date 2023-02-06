@@ -1,11 +1,12 @@
-import { AiOutlinePlus } from "react-icons/ai";
 import type { ProjectType } from "../../utils";
+import { DeleteButton } from "./DeleteButton";
 
 interface ItemProps {
   item: string | ProjectType;
   index: number;
   isEditing?: boolean;
   onDelete: (index: number) => void;
+  buttonStyles?: string;
 }
 
 export const Item: React.FC<ItemProps> = ({
@@ -13,19 +14,12 @@ export const Item: React.FC<ItemProps> = ({
   onDelete,
   index,
   isEditing,
+  buttonStyles,
 }) => {
   return (
-    <li className="group: relative flex items-center text-sm">
+    <li className="group: relative m-1 flex items-center text-sm">
       {isEditing && (
-        <button
-          className="absolute -top-2 -right-2 grid h-6 w-6 place-items-center rounded-full  bg-black/30 text-red-300 opacity-0 duration-150 ease-in-out hover:bg-black/60 hover:text-red-500 group-hover:opacity-100"
-          onClick={(e) => {
-            e.preventDefault();
-            onDelete(index);
-          }}
-        >
-          <AiOutlinePlus size={15} className="rotate-45" />
-        </button>
+        <DeleteButton styles={buttonStyles} index={index} onDelete={onDelete} />
       )}
       {typeof item === "string" && <span>{item}</span>}
       {typeof item === "object" && (

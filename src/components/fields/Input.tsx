@@ -6,6 +6,7 @@ interface InputProps {
   label?: string | ReactNode;
   value: string;
   styles?: string;
+  maxLength?: number;
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -14,6 +15,7 @@ export const Input: React.FC<InputProps> = ({
   label,
   value,
   styles,
+  maxLength,
 }) => {
   return (
     <div className={`field-container mb-1 ${styles ? styles : ""}`}>
@@ -25,9 +27,12 @@ export const Input: React.FC<InputProps> = ({
         {label ? label : ""}
       </label>
       <input
+        maxLength={maxLength || 50}
         onChange={onChange}
         type="text"
-        className={`default-input w-7/8 h-9 ${styles ? styles : ""}`}
+        className={`default-input w-7/8 h-9 ${
+          styles ? styles : ""
+        }text-ellipsis`}
         placeholder={placeholder}
         value={value}
       />

@@ -3,6 +3,7 @@ import { trpc } from "../utils/trpc";
 import "../styles/globals.css";
 import Head from "next/head";
 import { GlobalContextProvider } from "../components";
+import { ToastContainer } from "react-toastify";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
@@ -14,6 +15,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
       </Head>
       <GlobalContextProvider>
         <Component {...pageProps} />
+        <ToastContainer />
       </GlobalContextProvider>
     </>
   );

@@ -2,7 +2,14 @@
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        steam: {
+          "0%, 100%": { backgroundPosition: "0 0" },
+          "50%": { backgroundPosition: "100% " },
+        },
+      },
+    },
   },
   plugins: [],
 };

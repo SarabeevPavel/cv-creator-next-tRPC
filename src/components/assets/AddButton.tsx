@@ -4,13 +4,19 @@ interface AddButtonProps {
   disabled: boolean;
   onChange: () => void;
   styles?: string;
+  view?: boolean;
 }
 
 export const AddButton: React.FC<AddButtonProps> = ({
   disabled,
   onChange,
   styles,
+  view,
 }) => {
+  if (!view) {
+    return null;
+  }
+
   return (
     <button
       disabled={disabled}

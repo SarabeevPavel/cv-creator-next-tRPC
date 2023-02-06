@@ -1,6 +1,7 @@
+import { RxMagicWand } from "react-icons/rx";
+
 interface ButtonGenerateProps {
   position?: string;
-  title?: string;
   onClick?: () => void;
   isLoading?: boolean;
   styles?: string;
@@ -8,7 +9,6 @@ interface ButtonGenerateProps {
 }
 
 export const ButtonGenerate: React.FC<ButtonGenerateProps> = ({
-  title,
   onClick,
   styles,
   disabledConfig,
@@ -18,11 +18,11 @@ export const ButtonGenerate: React.FC<ButtonGenerateProps> = ({
       type="button"
       onClick={onClick}
       disabled={disabledConfig}
-      className={`mt-2 w-full rounded-lg bg-purple-700 p-1 text-sm font-medium text-white hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 disabled:bg-gray-500 disabled:opacity-70 ${
+      className={`hover:rgb-background grid h-7 w-7 place-items-center rounded-lg  bg-purple-700 text-white focus:outline-none focus:ring-4 focus:ring-purple-300 disabled:opacity-70 ${
         styles ? styles : ""
       }`}
     >
-      Generate {title}
+      <RxMagicWand />
     </button>
   );
 };

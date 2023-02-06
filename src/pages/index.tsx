@@ -15,7 +15,7 @@ const Home: NextPage = () => {
   const { user, setUser } = useGlobalContext();
   const [about, setAbout] = useState<string>("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<boolean>(false);
 
   const handleGenerateCv = () => {
     setLoading(true);
@@ -30,10 +30,10 @@ const Home: NextPage = () => {
             setUser(newUser);
             void router.push({ pathname: "/cv" });
           }
-          setError(null);
+          setError(false);
         },
         onError: () => {
-          setError("Error");
+          setError(true);
           setUser(initialUser);
         },
         onSettled: () => {

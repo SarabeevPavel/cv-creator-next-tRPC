@@ -35,7 +35,7 @@
     @apply w-full rounded-lg bg-transparent px-2 text-sm outline-0 ring-0 hover:bg-white/20 focus:bg-white/20;
   }
   .container {
-    @apply w-full px-2 py-4;
+    @apply w-full px-2 py-2;
   }
 }
 
@@ -56,5 +56,31 @@
   }
   .styled-scrollbar::-webkit-scrollbar-corner {
     @apply bg-transparent;
+  }
+
+  .rgb-background:hover {
+    @apply animate-[steam_20s_linear_infinite];
+    width: 28px;
+    height: 28px;
+    transition: 100ms;
+    background-size: 1000%;
+    background: linear-gradient(
+      45deg,
+      #fb0094,
+      #0000ff,
+      #00ff00,
+      #ffff00,
+      #ff0000,
+      #fb0094,
+      #0000ff,
+      #00ff00,
+      #ffff00,
+      #ff0000,
+      #ffff00,
+      #00ff00,
+      #0000ff,
+      #fb0094
+    );
+    background-size: 1000%;
   }
 }

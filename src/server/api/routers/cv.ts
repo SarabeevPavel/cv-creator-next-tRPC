@@ -29,4 +29,56 @@ export const cvRouter = createTRPCRouter({
       JSON.parse(JSON.stringify(result as string));
       return result;
     }),
+
+  generateSummary: publicProcedure
+    .input(z.object({ text: z.string() }))
+    .mutation(async ({ input }) => {
+      const prompt = `Create a CV summary for the position:${input.text}`;
+      const res = await openai.createCompletion({
+        model: "text-davinci-003",
+        prompt: `${prompt}`,
+        max_tokens: 160,
+        temperature: 0.5,
+      });
+
+      const result = res.data.choices[0]?.text
+        ?.replace("\n", " ")
+        .replace("\\", " ");
+
+      return result;
+    }),
+
+  continueSummary: publicProcedure
+    .input(z.object({ text: z.string() }))
+    .mutation(async ({ input }) => {
+      const prompt = `Continue a CV summary:${input.text}`;
+      const res = await openai.createCompletion({
+        model: "text-davinci-003",
+        prompt: `${prompt}`,
+        max_tokens: 160,
+        temperature: 0.5,
+      });
+
+      const result = res.data.choices[0]?.text
+        ?.replace("\n", "")
+        .replace("\\", "");
+
+      return result;
+    }),
+
+  generateStack: publicProcedure
+    .input(z.object({ text: z.string() }))
+    .mutation(async ({ input }) => {
+      const prompt = `return stack from 12 technologies for ${input.text}`;
+      const res = await openai.createCompletion({
+        model: "text-davinci-003",
+        prompt: `${prompt}`,
+        max_tokens: 80,
+        temperature: 0.5,
+      });
+
+      const result = res.data.choices[0]?.text;
+
+      return result;
+    }),
 });

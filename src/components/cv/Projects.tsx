@@ -12,23 +12,29 @@ interface ProjectsProps {
 export const Projects: React.FC<ProjectsProps> = ({ user, onChange }) => {
   const [newProject, setNewProject] = useState<ProjectType>(initialProject);
   const [editing, setEditing] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="group container relative ">
+    <div className="group container relative">
       <div className="jc flex">
         <h3 className="text-md mb-2 text-center font-semibold">Projects</h3>
         <EditButton
           isEditing={editing}
           onChange={() => setEditing(true)}
-          styles="text-blue-600 group-hover:text-blue-600 hover:bg-black/20"
+          styles={`${
+            !user.projects.length ? "hidden" : "block"
+          } text-blue-600 group-hover:text-blue-600 hover:bg-black/20`}
         />
         <DoneButton
           isEditing={editing}
-          onChange={() => setEditing(false)}
+          onChange={() => {
+            setEditing(false);
+            setIsOpen(false);
+          }}
           styles="text-white"
         />
       </div>
-      {editing && (
+      {editing && isOpen && user.projects.length < 5 && (
         <div
           className={`${
             editing
@@ -57,7 +63,8 @@ export const Projects: React.FC<ProjectsProps> = ({ user, onChange }) => {
                 description: e.currentTarget.value,
               })
             }
-            styles="rounded-xl bg-gray-200 hover:bg-gray-200 focus:bg-gray-200 mb-2 px-2 py-3 h-20"
+            maxLength={60}
+            styles="rounded-xl bg-gray-200 hover:bg-gray-200 focus:bg-gray-200 mb-2 px-2 py-3 h-20 hide-scrollbar"
 
             //   onContinue={async (startText: string) => {
             //     toggleLoading(true)
@@ -90,6 +97,7 @@ export const Projects: React.FC<ProjectsProps> = ({ user, onChange }) => {
           />
 
           <AddButton
+            view={isOpen && editing}
             disabled={
               !newProject.title.trim().length ||
               !newProject.description.trim().length ||
@@ -101,12 +109,14 @@ export const Projects: React.FC<ProjectsProps> = ({ user, onChange }) => {
                 projects: [...user.projects, newProject],
               });
               setNewProject(initialProject);
+              setIsOpen(false);
             }}
-            styles="w-full mt-1 ml-0"
+            styles="w-full mt-1 ml-0 text-white"
           />
         </div>
       )}
       <List
+        buttonStyles="absolute -top-2 -right-2"
         isEditing={editing}
         items={user.projects}
         onDelete={(i) =>
@@ -115,6 +125,21 @@ export const Projects: React.FC<ProjectsProps> = ({ user, onChange }) => {
             projects: user.projects.filter((p, index) => index !== i),
           })
         }
+      />
+
+      <AddButton
+        view={(!user.projects.length && !isOpen) || editing}
+        disabled={user.projects.length !== 0 && user.projects.length > 3}
+        onChange={() => {
+          setEditing(true);
+          setIsOpen(true);
+        }}
+        styles={`ml-auto mr-auto text-white block opacity-0 ${
+          (user.projects.length === 0 && editing) ||
+          (user.projects.length && !editing)
+            ? "group-hover:opacity-100"
+            : ""
+        }group-hover:opacity-100 disabled:hidden`}
       />
     </div>
   );

@@ -1,3 +1,4 @@
+export * from "./avatar";
 export * from "./Contacts";
 export * from "./Languages";
 export * from "./Profile";

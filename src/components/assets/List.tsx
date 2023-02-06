@@ -6,6 +6,7 @@ interface ListProps {
   isEditing?: boolean;
   onDelete: (i: number) => void;
   styles?: string;
+  buttonStyles?: string;
 }
 
 export const List: React.FC<ListProps> = ({
@@ -13,6 +14,7 @@ export const List: React.FC<ListProps> = ({
   onDelete,
   isEditing,
   styles,
+  buttonStyles,
 }) => {
   return (
     <div className="group">
@@ -25,6 +27,7 @@ export const List: React.FC<ListProps> = ({
               onDelete={(index: number) => onDelete(index)}
               index={i}
               isEditing={isEditing}
+              buttonStyles={buttonStyles}
             />
           ))}
         </ul>

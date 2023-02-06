@@ -1,17 +1,23 @@
 import { FiEdit } from "react-icons/fi";
+import type { ProjectType } from "../../utils";
 // import { MdEditNote } from "react-icons/md";
 
 interface EditButtonProps {
   isEditing: boolean;
   onChange: () => void;
   styles?: string;
+  items?: string[] | ProjectType[];
 }
 
 export const EditButton: React.FC<EditButtonProps> = ({
   isEditing,
   onChange,
   styles,
+  items,
 }) => {
+  if (items && !items.length) {
+    return null;
+  }
   return (
     <button
       onClick={onChange}
