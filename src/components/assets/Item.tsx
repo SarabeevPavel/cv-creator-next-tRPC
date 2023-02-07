@@ -29,7 +29,7 @@ export const Item: React.FC<ItemProps> = ({
         >
           <h5 className="text-md">{item.title}</h5>
           <p className="text-sm">{item.description}</p>
-          <a className={`text-xs underline`} href={item.repositoryUrl}>
+          <a className="text-xs underline" href={item.repositoryUrl}>
             {item.repositoryUrl}
           </a>
         </div>

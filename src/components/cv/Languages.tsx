@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { UserType } from "../../utils";
 import { Input } from "../fields";
 import { DoneButton, EditButton, AddButton, List } from "../assets";
+import classNames from "classnames";
 
 interface LanguagesProps {
   user: UserType;
@@ -49,11 +50,12 @@ export const Languages: React.FC<LanguagesProps> = ({ user, onChange }) => {
       />
       {editing && isOpen && user.languages.length < 8 && (
         <div
-          className={`${
+          className={classNames(
             editing
               ? "opacity-100 transition-opacity duration-200"
-              : "opacity-0 transition-opacity duration-200"
-          }    absolute left-1/2 z-10 mx-auto mt-2 flex w-2/3 -translate-x-1/2 items-center justify-center rounded-xl bg-black/50 p-2 duration-200 ease-in-out`}
+              : "opacity-0 transition-opacity duration-200",
+            "absolute left-1/2 z-10 mx-auto mt-2 flex w-2/3 -translate-x-1/2 items-center justify-center rounded-xl bg-black/50 p-2 duration-200 ease-in-out"
+          )}
         >
           <Input
             placeholder="English"

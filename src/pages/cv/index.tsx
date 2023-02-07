@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import { useGlobalContext } from "../../hooks/useGlobalContext";
 
-// components:
 import { Viewer } from "../../components";
 import type { UserType } from "../../utils";
 

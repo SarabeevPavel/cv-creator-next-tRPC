@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import type { ProjectType } from "../../utils";
 import { Item } from "./Item";
 
@@ -19,7 +20,7 @@ export const List: React.FC<ListProps> = ({
   return (
     <div className="group">
       {items.length ? (
-        <ul className={`mt-3 ${styles ? styles : ""}`}>
+        <ul className={classNames(styles, "mt-3")}>
           {items.map((item, i) => (
             <Item
               key={i}

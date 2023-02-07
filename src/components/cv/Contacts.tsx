@@ -52,5 +52,3 @@ export const Contacts: React.FC<ContactsProps> = ({ user, onChange }) => {
     </div>
   );
 };
-
-// export {};

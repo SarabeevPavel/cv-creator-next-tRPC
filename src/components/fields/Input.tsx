@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import type { ReactNode } from "react";
 
 interface InputProps {
@@ -18,11 +19,12 @@ export const Input: React.FC<InputProps> = ({
   maxLength,
 }) => {
   return (
-    <div className={`field-container mb-1 ${styles ? styles : ""}`}>
+    <div className={classNames(styles, "field-container mb-1")}>
       <label
-        className={`w-1/8 text-sm ${
-          label ? "mr-1" : ""
-        } first-letter:uppercase`}
+        className={classNames(
+          "w-1/8 text-sm first-letter:uppercase",
+          label && "mr-1"
+        )}
       >
         {label ? label : ""}
       </label>
@@ -30,9 +32,7 @@ export const Input: React.FC<InputProps> = ({
         maxLength={maxLength || 50}
         onChange={onChange}
         type="text"
-        className={`default-input w-7/8 h-9 ${
-          styles ? styles : ""
-        }text-ellipsis`}
+        className={classNames(styles, "default-input w-7/8 h-9 text-ellipsis")}
         placeholder={placeholder}
         value={value}
       />
