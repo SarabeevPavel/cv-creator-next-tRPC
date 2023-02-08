@@ -1,3 +1,4 @@
+import { useGlobalContext } from "../../hooks";
 import type { ProjectType } from "../../utils";
 import { DeleteButton } from "./DeleteButton";
 
@@ -16,6 +17,7 @@ export const Item: React.FC<ItemProps> = ({
   isEditing,
   buttonStyles,
 }) => {
+  const { theme } = useGlobalContext();
   return (
     <li className="group: relative m-1 flex items-center text-sm">
       {isEditing && (
@@ -25,7 +27,11 @@ export const Item: React.FC<ItemProps> = ({
       {typeof item === "object" && (
         <div
           key={index}
-          className="w-full rounded-xl bg-blue-400 px-4 py-2 text-white"
+          className="w-full rounded-xl px-4 py-2 text-white"
+          style={{
+            backgroundColor: theme.additionalColor,
+            color: theme.mainColor,
+          }}
         >
           <h5 className="text-md">{item.title}</h5>
           <p className="text-sm">{item.description}</p>
