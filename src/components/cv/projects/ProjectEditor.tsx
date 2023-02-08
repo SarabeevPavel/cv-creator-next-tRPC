@@ -36,7 +36,7 @@ export const ProjectEditor: React.FC<ProjectEditorProps> = ({
     show: { opacity: 1, transition: { duration: 0.5 } },
   };
 
-  if (!isEditing && !isOpen && user.projects.length < 5) {
+  if (!isEditing || !isOpen) {
     return null;
   }
 

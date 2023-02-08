@@ -15,9 +15,11 @@ export const Languages: React.FC<LanguagesProps> = ({ user, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="group relative text-white/90">
+    <div className="group relative">
       <div className="flex">
-        <h3 className="text-md mb-2 text-left font-semibold">Languages</h3>
+        <h3 className="text-md mb-2 text-left font-semibold uppercase">
+          Languages
+        </h3>
         <EditButton
           items={user.languages}
           isEditing={editing}
@@ -46,7 +48,7 @@ export const Languages: React.FC<LanguagesProps> = ({ user, onChange }) => {
           setEditing(true);
           setIsOpen(true);
         }}
-        styles={`ml-auto mr-auto text-white mt-2 mb-0 block opacity-0 group-hover:opacity-100 disabled:hidden bg-white/90 text-blue-600 hover:bg-white`}
+        styles={`ml-auto mr-auto text-white mt-2 mb-0 block opacity-0 group-hover:opacity-100 disabled:hidden `}
       />
       {editing && isOpen && user.languages.length < 8 && (
         <div

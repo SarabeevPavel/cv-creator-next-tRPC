@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { AiOutlinePlus } from "react-icons/ai";
 
 interface AddButtonProps {
-  disabled: boolean;
+  disabled?: boolean;
   onChange: () => void;
   styles?: string;
   view?: boolean;

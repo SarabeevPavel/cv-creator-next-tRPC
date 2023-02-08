@@ -12,7 +12,9 @@ interface ContactsProps {
 export const Contacts: React.FC<ContactsProps> = ({ user, onChange }) => {
   return (
     <div>
-      <h3 className="text-md mb-2 text-left font-semibold">Contacts</h3>
+      <h3 className="text-md mb-2 text-left font-semibold uppercase">
+        Contacts
+      </h3>
       <Input
         label={<BsFillTelephoneFill size={20} />}
         placeholder="XXX (XXX) XX-XX"

@@ -1,19 +1,23 @@
 import type { ReactNode } from "react";
 import React, { useState } from "react";
-import type { UserType } from "../../utils";
-import { initialUser } from "../../utils";
+import type { ThemeType, UserType } from "../../utils";
+import { initialUser, initialThemes } from "../../utils";
 
 interface IGlobalContextProps {
   user: UserType;
+  theme: ThemeType;
   loading: boolean;
   setUser: (user: UserType) => void;
+  setTheme: (theme: ThemeType) => void;
   setLoading: (loading: boolean) => void;
 }
 
 export const GlobalContext = React.createContext<IGlobalContextProps>({
   user: initialUser,
   loading: true,
+  theme: initialThemes["navi"],
   setUser: () => void {},
+  setTheme: () => void {},
   setLoading: () => void {},
 });
 
@@ -25,14 +29,19 @@ export const GlobalContextProvider = ({
   children,
 }: GlobalContextProviderProps) => {
   const [currentUser, setCurrentUser] = useState<UserType>(initialUser);
+  const [currentTheme, setCurrentTheme] = useState<ThemeType>(
+    initialThemes["navi"]
+  );
   const [isLoading, setIsLoading] = useState(true);
 
   return (
     <GlobalContext.Provider
       value={{
         user: currentUser,
+        theme: currentTheme,
         loading: isLoading,
         setUser: setCurrentUser,
+        setTheme: setCurrentTheme,
         setLoading: setIsLoading,
       }}
     >

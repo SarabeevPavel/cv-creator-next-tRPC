@@ -1,7 +1,8 @@
 import { useState } from "react";
-import type { UserType } from "../../../utils";
+import type { ThemeType, UserType } from "../../../utils";
 import { AddButton, DoneButton, EditButton, List } from "../../assets";
 import { ProjectEditor } from "./ProjectEditor";
+import classNames from "classnames";
 
 interface ProjectsProps {
   user: UserType;
@@ -15,15 +16,18 @@ export const Projects: React.FC<ProjectsProps> = ({ user, onChange }) => {
   const [isError, setIsError] = useState(false);
 
   return (
-    <div className="group container relative">
+    <div className="group container relative ">
       <div className="jc flex">
-        <h3 className="text-md mb-2 text-center font-semibold">Projects</h3>
+        <h3 className="text-md mb-2 text-center font-semibold uppercase">
+          Projects
+        </h3>
         <EditButton
           isEditing={isEditing}
           onChange={() => setIsEditing(true)}
-          styles={`${
-            !user.projects.length ? "hidden" : "block"
-          } text-blue-600 group-hover:text-blue-600 hover:bg-black/20`}
+          styles={classNames(
+            !user.projects.length ? "hidden" : "block",
+            "hover:bg-black/20`"
+          )}
         />
         <DoneButton
           isEditing={isEditing}
@@ -59,7 +63,6 @@ export const Projects: React.FC<ProjectsProps> = ({ user, onChange }) => {
 
       <AddButton
         view={(!user.projects.length && !isOpen) || isEditing}
-        disabled={user.projects.length !== 0 && user.projects.length > 3}
         onChange={() => {
           setIsEditing(true);
           setIsOpen(true);
@@ -69,7 +72,7 @@ export const Projects: React.FC<ProjectsProps> = ({ user, onChange }) => {
           (user.projects.length && !isEditing)
             ? "group-hover:opacity-100"
             : ""
-        }group-hover:opacity-100 disabled:hidden`}
+        }group-hover:opacity-100 disabled:hidden mt-4`}
       />
     </div>
   );

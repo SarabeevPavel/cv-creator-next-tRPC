@@ -29,8 +29,7 @@ const Home: NextPage = () => {
       {
         onSuccess: (res) => {
           if (res) {
-            console.log(res);
-            console.log(JSON.parse(res) as UserType);
+
             const newUser = JSON.parse(res) as UserType;
             setUser(newUser);
             void router.push({ pathname: "/cv" });

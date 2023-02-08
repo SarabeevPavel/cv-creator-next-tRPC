@@ -25,7 +25,6 @@ export const Crop: React.FC<CropProps> = ({
     const imageElement: any = cropperRef?.current; /* eslint-disable-line */
 
     const cropper = imageElement?.cropper; /* eslint-disable-line */
-    console.log("crop");
 
     onCrop(cropper.getCroppedCanvas().toDataURL()); /* eslint-disable-line */
     onClose();

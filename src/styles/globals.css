@@ -58,10 +58,9 @@
     @apply bg-transparent;
   }
 
-  .rgb-background:hover {
+  .rgb-background {
     @apply animate-[steam_20s_linear_infinite];
-    width: 28px;
-    height: 28px;
+
     transition: 100ms;
     background-size: 1000%;
     background: linear-gradient(

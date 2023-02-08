@@ -54,6 +54,7 @@ export const TechnologyEditor: React.FC<TechnologyEditorProps> = ({
             technologies: [...user.technologies, value],
           });
           setValue("");
+          onClose();
         }}
         styles="text-white"
       />

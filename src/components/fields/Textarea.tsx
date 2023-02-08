@@ -1,3 +1,4 @@
+import ReactTextareaAutosize from "react-textarea-autosize";
 import { ButtonGenerate, ErrorMessage, Loader } from "../assets";
 import classNames from "classnames";
 
@@ -30,7 +31,7 @@ export const Textarea: React.FC<TextareaProps> = ({
   return (
     <div className="field-container group flex flex-col">
       <div className="mb-2 flex w-full items-center">
-        <label className="mb-1 mr-2 font-semibold uppercase">{label}</label>
+        <label className="mb-1 ml-2 font-semibold uppercase">{label}</label>
         {onGenerate && (
           <>
             <ButtonGenerate
@@ -48,7 +49,7 @@ export const Textarea: React.FC<TextareaProps> = ({
         )}
       </div>
 
-      <textarea
+      <ReactTextareaAutosize
         onChange={onChange}
         className={classNames(
           styles,
@@ -58,6 +59,7 @@ export const Textarea: React.FC<TextareaProps> = ({
         maxLength={maxLength || 300}
         value={value}
         disabled={isLoading}
+        minRows={2}
       />
     </div>
   );

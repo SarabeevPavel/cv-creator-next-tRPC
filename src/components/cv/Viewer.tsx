@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import type { UserType } from "../../utils";
+import type { ThemeType, UserType } from "../../utils";
 
 import {
   Avatar,
@@ -14,9 +14,10 @@ import {
 interface ViewerProps {
   user: UserType;
   onChange: (updatedUser: UserType) => void;
+  theme: ThemeType;
 }
 
-export const Viewer: React.FC<ViewerProps> = ({ user, onChange }) => {
+export const Viewer: React.FC<ViewerProps> = ({ user, onChange, theme }) => {
   return (
     <motion.div
       initial={{ scale: 0.1 }}
@@ -24,19 +25,40 @@ export const Viewer: React.FC<ViewerProps> = ({ user, onChange }) => {
       transition={{ type: "linear" }}
       className="styled-scrollbar h-full overflow-auto px-4 py-5"
     >
-      <div className="flex h-[1000px] w-[700px] bg-zinc-100">
-        <div role="user-photo-info" className="flex w-2/5 flex-col bg-blue-800">
+      <div
+        className="flex h-[1000px] w-[700px] overflow-hidden"
+        style={{
+          backgroundColor: theme.mainColor,
+          color: theme.additionalColor,
+        }}
+      >
+        <div
+          role="user-photo-info"
+          className="flex w-2/5 flex-col "
+          style={{
+            backgroundColor: theme.additionalColor,
+            color: theme.mainColor,
+          }}
+        >
           <div role="avatar" className=" h-1/2 w-full">
             <Avatar user={user} onChange={onChange} />
           </div>
-          <div role="contacts" className="container text-white/90">
+          <div role="contacts" className="container ">
             <Contacts user={user} onChange={onChange} />
           </div>
-          <div role="languages" className="container text-white/90">
+          <div role="languages" className="container ">
             <Languages user={user} onChange={onChange} />
           </div>
         </div>
-        <div role="user-about-stack" className="w-3/5 text-blue-600">
+
+        <div
+          role="user-about-stack"
+          className="w-3/5"
+          style={{
+            backgroundColor: theme.mainColor,
+            color: theme.additionalColor,
+          }}
+        >
           <div role="name,position" className="h-1/8 container">
             <Profile user={user} onChange={onChange} />
           </div>

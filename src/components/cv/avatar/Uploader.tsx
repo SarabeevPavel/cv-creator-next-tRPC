@@ -17,7 +17,7 @@ export const Uploader: React.FC<UploaderProps> = ({
         <button
           disabled={isLoading}
           type="button"
-          className="h-10 w-full rounded-lg bg-green-700 p-2 text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-green-300 disabled:bg-gray-400 group-hover:bg-green-800 disabled:group-hover:bg-gray-400"
+          className="h-10 w-full rounded-lg bg-purple-700 p-2 text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-purple-300 disabled:bg-gray-400 group-hover:bg-purple-800 disabled:group-hover:bg-gray-400"
         >
           Upload avatar
         </button>

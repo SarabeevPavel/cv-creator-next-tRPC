@@ -25,7 +25,14 @@ export interface UserType {
   projects: ProjectType[] | [];
 }
 
+export interface ThemeType {
+  mainColor: string;
+  additionalColor: string;
+}
+
 export type userContextType = {
   user: UserType | null;
   setUser: React.Dispatch<React.SetStateAction<UserType | null>>;
+  theme: ThemeType;
+  setTheme: React.Dispatch<React.SetStateAction<ThemeType>>;
 };

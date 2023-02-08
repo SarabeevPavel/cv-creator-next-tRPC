@@ -25,51 +25,12 @@ export const Stack: React.FC<StackProps> = ({ user, onChange }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const { position } = user;
-  const { mutate } = trpc.cv.generateStack.useMutation();
-
-  const handleGenerateStack = () => {
-    setIsLoading(true);
-    mutate(
-      { text: user.summary },
-      {
-        onSuccess: (res) => {
-          if (res) {
-            console.log(res);
-            onChange({
-              ...user,
-              technologies: res
-                .split(" ")
-                .map((item) => item.replace(/[0-9.]/g, "")),
-            });
-          }
-          setIsError(false);
-        },
-        onError: () => {
-          setIsError(true);
-        },
-        onSettled: () => {
-          setIsLoading(false);
-        },
-      }
-    );
-  };
-
   return (
-    <div className="group container relative h-40">
+    <div className="min-h-44 group container relative">
       <div className="flex">
-        <h3 className="text-md mb-2 text-center font-semibold">
-          Stack of technologies
+        <h3 className="text-md mb-2 text-center font-semibold uppercase">
+          Stack
         </h3>
-        <ButtonGenerate
-          styles={`opacity-0 inline-block group-hover:opacity-100 ml-2 ${
-            isLoading ? "opacity-100" : ""
-          }`}
-          disabledConfig={
-            position ? !position?.trim().length : isLoading || isLoading
-          }
-          onClick={handleGenerateStack}
-        />
 
         <ErrorMessage isError={isError} />
         <Loader isLoading={isLoading} />
@@ -81,7 +42,7 @@ export const Stack: React.FC<StackProps> = ({ user, onChange }) => {
             setIsEditing(true);
             setIsOpen(false);
           }}
-          styles="text-blue-600 group-hover:text-blue-600 hover:bg-black/20"
+          styles="hover:bg-black/20 "
         />
 
         <DoneButton
@@ -92,9 +53,7 @@ export const Stack: React.FC<StackProps> = ({ user, onChange }) => {
 
         <AddButton
           view={isEditing && user.technologies.length !== 0}
-          disabled={
-            user.technologies.length !== 0 && user.technologies.length > 11
-          }
+          disabled={user.technologies.length > 11}
           onChange={() => {
             setIsOpen(true);
           }}
@@ -134,7 +93,7 @@ export const Stack: React.FC<StackProps> = ({ user, onChange }) => {
             technologies: user.technologies.filter((_, index) => index !== i),
           })
         }
-        styles="grid grid-cols-3"
+        styles="grid grid-cols-3 place-items-start"
       />
     </div>
   );
