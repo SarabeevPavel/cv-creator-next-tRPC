@@ -1,26 +1,39 @@
 import { type NextPage } from "next";
-import { useState } from "react";
-import type { UserType } from "../utils/";
+import { useEffect, useState } from "react";
+import type { ThemeType, UserType } from "../utils/";
 import { trpc } from "../utils/";
 import { useRouter } from "next/router";
 import { useGlobalContext } from "../hooks";
 import { initialUser } from "../utils";
-import { About, GetStartedButton, Choice, Loader } from "../components";
+import { About, GetStartedButton, Choice } from "../components";
 
 import { motion } from "framer-motion";
+import { toast } from "react-toastify";
 
 const Home: NextPage = () => {
   const { mutate } = trpc.cv.initCV.useMutation();
 
   const router = useRouter();
-  const { setUser } = useGlobalContext();
+  const { setUser, setTheme } = useGlobalContext();
+
+  const [saveUser, setSaveUser] = useState<string | null>(null);
+  const [saveTheme, setSaveTheme] = useState<string | null>(null);
+
   const [about, setAbout] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState<boolean>(false);
 
-  const [choice, setChoice] = useState<"get-started" | "choice" | "about">(
-    "get-started"
-  );
+  const [choice, setChoice] = useState<
+    "get-started" | "choice" | "about" | "continue"
+  >("get-started");
+
+  useEffect(() => {
+    // Perform localStorage action
+    const oldUser = localStorage.getItem("user");
+    const oldTheme = localStorage.getItem("theme");
+    setSaveUser(oldUser);
+    setSaveTheme(oldTheme);
+  }, []);
 
   const handleGenerateCv = () => {
     setIsLoading(true);
@@ -29,16 +42,16 @@ const Home: NextPage = () => {
       {
         onSuccess: (res) => {
           if (res) {
-
             const newUser = JSON.parse(res) as UserType;
             setUser(newUser);
             void router.push({ pathname: "/cv" });
           }
           setIsError(false);
+          toast.success("Generated success!");
         },
         onError: () => {
           setIsError(true);
-          setUser(initialUser);
+          toast.error("Oops, something's gone wrong. Try again!");
         },
         onSettled: () => {
           setIsLoading(false);
@@ -71,10 +84,18 @@ const Home: NextPage = () => {
             />
 
             <Choice
+              isSave={Boolean(saveUser)}
               isView={choice === "choice"}
               onSelect={(value: string) => {
                 if (value === "about") {
                   setChoice("about");
+                } else if (value === "continue") {
+                  setChoice("continue");
+                  if (saveUser && saveTheme) {
+                    setUser(JSON.parse(saveUser) as UserType);
+                    setTheme(JSON.parse(saveTheme) as ThemeType);
+                    void router.push({ pathname: "/cv" });
+                  }
                 } else {
                   setUser(initialUser);
                   void router.push({ pathname: "/cv" });
@@ -85,6 +106,7 @@ const Home: NextPage = () => {
             <About
               isView={choice === "about"}
               isLoading={isLoading}
+              isError={isError}
               value={about}
               onChange={(value: string) => setAbout(value)}
               onGenerate={() => handleGenerateCv()}

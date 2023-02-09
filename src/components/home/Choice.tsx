@@ -2,11 +2,11 @@ import { motion } from "framer-motion";
 
 interface ChoiceProps {
   isView: boolean;
+  isSave: boolean;
   onSelect: (value: string) => void;
 }
 
-export const Choice: React.FC<ChoiceProps> = ({ isView, onSelect }) => {
-  // if (!isView) return null;
+export const Choice: React.FC<ChoiceProps> = ({ isView, isSave, onSelect }) => {
   return (
     <motion.div
       initial={{
@@ -42,6 +42,17 @@ export const Choice: React.FC<ChoiceProps> = ({ isView, onSelect }) => {
             Create a clean CV
           </span>
         </button>
+        {isSave && (
+          <button
+            onClick={() => onSelect("continue")}
+            type="button"
+            className=" ml-6 h-24 w-44 rounded-lg bg-gradient-to-br from-pink-500 to-orange-400  text-center text-sm font-medium text-white hover:bg-gradient-to-bl focus:outline-none focus:ring-4 focus:ring-pink-200 dark:focus:ring-pink-800"
+          >
+            <span className="relative rounded-md  text-base font-semibold transition-all duration-75 ease-in group-hover:bg-opacity-0 ">
+              Continue editing
+            </span>
+          </button>
+        )}
       </div>
     </motion.div>
   );

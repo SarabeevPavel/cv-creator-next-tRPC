@@ -4,6 +4,7 @@ import "../styles/globals.css";
 import Head from "next/head";
 import { GlobalContextProvider } from "../components";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (

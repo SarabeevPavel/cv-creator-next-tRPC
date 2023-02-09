@@ -22,7 +22,7 @@ export const Loader: React.FC<LoaderProps> = ({
       size={size || 28}
       aria-label="Loading Spinner"
       data-testid="loader"
-      className={`ml-2 ${styles ? styles : ""}`}
+      className={`${styles ? styles : ""}`}
     />
   );
 };

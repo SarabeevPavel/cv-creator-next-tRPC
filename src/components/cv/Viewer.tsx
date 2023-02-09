@@ -26,6 +26,7 @@ export const Viewer: React.FC<ViewerProps> = ({ user, onChange, theme }) => {
       className="styled-scrollbar h-full overflow-auto px-4 py-5"
     >
       <div
+        id="cv-document"
         className="flex h-[1000px] w-[700px] overflow-hidden"
         style={{
           backgroundColor: theme.mainColor,

@@ -17,8 +17,6 @@ interface TechnologyEditorProps {
 export const TechnologyEditor: React.FC<TechnologyEditorProps> = ({
   user,
   isEditing,
-  isLoading,
-  isError,
   isOpen,
   onChange,
   onClose,

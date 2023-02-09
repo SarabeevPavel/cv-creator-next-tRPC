@@ -28,7 +28,11 @@ export const Languages: React.FC<LanguagesProps> = ({ user, onChange }) => {
             setIsOpen(false);
           }}
         />
-        <DoneButton isEditing={editing} onChange={() => setEditing(false)} />
+        <DoneButton
+          isEditing={editing}
+          onChange={() => setEditing(false)}
+          styles="text-white"
+        />
         <AddButton
           view={editing && user.languages.length !== 0}
           disabled={

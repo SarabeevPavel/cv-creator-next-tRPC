@@ -6,13 +6,11 @@ import { Editor } from "../editor";
 import { FaPaintRoller } from "react-icons/fa";
 
 interface ConfigButtonProps {
-  user: UserType;
   theme: ThemeType;
   onChange: (updatedTheme: ThemeType) => void;
 }
 
 export const ConfigButton: React.FC<ConfigButtonProps> = ({
-  user,
   onChange,
   theme,
 }) => {
@@ -38,8 +36,8 @@ export const ConfigButton: React.FC<ConfigButtonProps> = ({
         onClick={() => setIsOpen(!isOpen)}
         disabled={isLoading}
         className={classNames(
-          isOpen ? "bg-gray-800 " : "bg-black/50 text-white",
-          " t group relative grid h-20 w-20 place-items-center overflow-hidden  rounded-full transition-all duration-200  ease-in-out hover:bg-gray-800   disabled:opacity-70"
+          isOpen ? "bg-gray-800 text-blue-500" : "bg-black/50 text-white",
+          "group relative grid h-20 w-20 place-items-center overflow-hidden  rounded-full transition-all duration-200  ease-in-out hover:bg-gray-800  hover:text-blue-500 disabled:opacity-70"
         )}
       >
         <FaPaintRoller />

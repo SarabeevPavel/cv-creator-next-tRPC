@@ -4,6 +4,7 @@ import { Loader } from "../assets";
 
 interface AboutProps {
   isView: boolean;
+  isError: boolean;
   isLoading: boolean;
   value: string;
   onChange: (value: string) => void;
@@ -13,6 +14,7 @@ interface AboutProps {
 
 export const About: React.FC<AboutProps> = ({
   isView,
+  isError,
   isLoading,
   value,
   onChange,
@@ -46,13 +48,14 @@ export const About: React.FC<AboutProps> = ({
           disabled={value.length < 10 || isLoading}
           className={classNames(
             value.length >= 10 &&
-              "bg-gradient-to-r from-green-400 via-green-500 to-green-600",
-            "default-button  mx-auto my-2 mr-2 mb-2 w-2/5 rounded-lg  px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-br disabled:bg-gray-600"
+              "bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br hover:text-white",
+            "default-button  mx-auto my-2 mr-2 mb-2 w-2/5 rounded-lg  px-5 py-2.5 text-center text-sm font-medium text-white/90 disabled:bg-gray-600 disabled:text-white/60 disabled:hover:bg-gray-600 disabled:hover:text-white/60"
           )}
           onClick={onGenerate}
         >
           <Loader isLoading={isLoading} color="white" size={30} />
           {!isLoading && <span>Continue</span>}
+          {isError && !isLoading && <span>Try again</span>}
         </button>
         <button
           type="button"

@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import type { UserType } from "../../utils";
 import { trpc } from "../../utils";
 import { Loader } from "./Loader";
+import { toast } from "react-toastify";
 
 interface MagicButtonProps {
   user: UserType;
@@ -51,9 +52,11 @@ export const MagicButton: React.FC<MagicButtonProps> = ({ user, onChange }) => {
             setGeneratedSummary(res.trim());
           }
           setIsError(false);
+          toast.success("Generated success!");
         },
         onError: () => {
           setIsError(true);
+          toast.error("Oops, something's gone wrong. Try again!");
         },
         onSettled: () => {
           setIsLoading(false);
@@ -66,12 +69,14 @@ export const MagicButton: React.FC<MagicButtonProps> = ({ user, onChange }) => {
       {
         onSuccess: (res) => {
           if (res) {
-            const newStack = res
-              .split("\n")
-              .filter((item: string) => item.length > 0)
-              .map((item: string) => item.trim());
-
-            setGeneratedStack(newStack);
+            const getArrayFromString = (str: string) => {
+              return str
+                .split("\n")
+                .map((item) => item.split(".")[1])
+                .filter((item) => typeof item === "string" && item.trim());
+            };
+            const newStack = getArrayFromString(res);
+            setGeneratedStack(newStack as string[]);
           }
           setIsError(false);
         },
