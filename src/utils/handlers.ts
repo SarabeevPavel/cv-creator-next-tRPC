@@ -7,6 +7,7 @@
 
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
+import pdfMake from "pdfmake/build/pdfmake";
 
 export const handleSave = (rootElementId: string, downloadFileName: string) => {
   const input = document.getElementById(rootElementId);
@@ -14,7 +15,16 @@ export const handleSave = (rootElementId: string, downloadFileName: string) => {
   html2canvas(input, { logging: true }).then((canvas) => {
     const imgData = canvas.toDataURL("image/png");
     const pdf = new jsPDF("p", "pt", "a4");
-    pdf.addImage(imgData, "PDF", 0, 0, 700, 1000);
+    pdf.addImage(imgData, "PDF", 0, 0, input.offsetWidth, input.offsetHeight);
     pdf.save(downloadFileName);
   });
 };
+
+// export const handleSave = (
+//   rootElementId: string,
+//   downloadFileName?: string
+// ) => {
+//   const input = document.getElementById(rootElementId);
+//   if (!input) return;
+//   const pdfGenerator = pdfMake.createPdf(input);
+// };

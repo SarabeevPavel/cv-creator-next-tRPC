@@ -7,8 +7,15 @@ import {
   ConfigButton,
   DownloadButton,
   HomeButton,
+  // PDFDownload,
 } from "../../components";
 import type { ThemeType, UserType } from "../../utils";
+// import ReactPDF, { Document, PDFDownloadLink, Page } from "@react-pdf/renderer";
+// import dynamic from "next/dynamic";
+
+// const InvoicePDF = dynamic(
+//   () => import("../../components/cv/pdfComponent/pdf")
+// );
 
 const CV: NextPage = () => {
   const { user, setUser, theme, setTheme } = useGlobalContext();
@@ -42,6 +49,7 @@ const CV: NextPage = () => {
             }
           />
         </div>
+
         <div className=" p-5">
           <MagicButton
             user={user}

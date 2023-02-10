@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import { TbFileDownload } from "react-icons/tb";
 import { handleSave } from "../../utils";
+import { Viewer } from "../cv";
 
 interface DownloadButtonProps {
   rootElementId: string;

@@ -10,6 +10,7 @@ import {
   Stack,
   Projects,
 } from "../cv";
+import ReactPDF from "@react-pdf/renderer";
 
 interface ViewerProps {
   user: UserType;
