@@ -20,7 +20,7 @@ export const Profile: React.FC<ProfileProps> = ({ user, onChange }) => {
         }}
         value={user.name}
         styles={
-          "text-center h-16 text-3xl rounded-xl hover:bg-gray-300 focus:bg-gray-300 font-bold"
+          "text-center text-3xl rounded-xl hover:bg-gray-300 focus:bg-gray-300 font-bold"
         }
       />
       <Input

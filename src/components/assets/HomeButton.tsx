@@ -72,9 +72,11 @@ export const HomeButton: React.FC<HomeButtonProps> = ({ user, theme }) => {
         )}
       </AnimatePresence>
       <button
+        type="button"
         onClick={() => setIsOpen(!isOpen)}
         className={classNames(
-          "group relative grid h-20 w-20 place-items-center overflow-hidden rounded-full  bg-black/50 text-white transition-all duration-200  ease-in-out hover:bg-gray-800 hover:text-blue-500   disabled:opacity-70"
+          isOpen ? "bg-gray-800 text-blue-500" : "bg-black/50 text-white",
+          "group relative grid h-20 w-20 place-items-center overflow-hidden  rounded-full transition-all duration-200  ease-in-out hover:bg-gray-800  hover:text-blue-500 disabled:opacity-70"
         )}
       >
         <AiFillHome size={20} />

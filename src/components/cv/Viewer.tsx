@@ -29,10 +29,6 @@ export const Viewer: React.FC<ViewerProps> = ({ user, onChange, theme }) => {
       <div
         id="cv-document"
         className="flex h-[1000px] w-[700px] overflow-hidden"
-        style={{
-          backgroundColor: theme.mainColor,
-          color: theme.additionalColor,
-        }}
       >
         <div
           role="user-photo-info"

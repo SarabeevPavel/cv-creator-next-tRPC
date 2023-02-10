@@ -32,7 +32,7 @@
     @apply grid h-12 w-40 place-items-center rounded-md bg-blue-600 transition hover:bg-blue-500 hover:text-white disabled:bg-gray-500 disabled:hover:bg-gray-500 disabled:hover:text-black;
   }
   .default-input {
-    @apply w-full rounded-lg bg-transparent px-2 text-sm outline-0 ring-0 hover:bg-white/20 focus:bg-white/20;
+    @apply w-full rounded-lg bg-transparent px-2 text-sm hover:bg-white/20 focus:bg-white/20;
   }
   .container {
     @apply w-full px-2 py-2;
