@@ -28,7 +28,6 @@ export const Summary: React.FC<SummaryProps> = ({ user, onChange }) => {
         }}
         styles="rounded-xl hover:bg-gray-300 focus:bg-gray-300 px-2 py-3 h-48"
         isLoading={isLoading}
-        isError={isError}
       />
     </div>
   );

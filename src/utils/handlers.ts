@@ -5,9 +5,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 
-import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import pdfMake from "pdfmake/build/pdfmake";
+import html2canvas from "@nidi/html2canvas";
+import type { UserType } from "./types";
 
 export const handleSavePDF = (
   rootElementId: string,
@@ -27,7 +28,6 @@ export const handleSavePNG = (
   rootElementId: string,
   downloadFileName: string
 ) => {
-  console.log("savepng");
   const input = document.getElementById(rootElementId);
   if (!input) return;
   html2canvas(input).then((canvas) => {
@@ -40,12 +40,3 @@ export const handleSavePNG = (
     link.remove();
   });
 };
-
-// export const handleSave = (
-//   rootElementId: string,
-//   downloadFileName?: string
-// ) => {
-//   const input = document.getElementById(rootElementId);
-//   if (!input) return;
-//   const pdfGenerator = pdfMake.createPdf(input);
-// };

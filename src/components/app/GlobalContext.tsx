@@ -12,10 +12,21 @@ interface IGlobalContextProps {
   setLoading: (loading: boolean) => void;
 }
 
+const storageUser =
+  typeof window !== "undefined"
+    ? (JSON.parse(JSON.stringify(localStorage.getItem("user"))) as UserType)
+    : initialUser;
+const storageTheme =
+  typeof window !== "undefined"
+    ? (JSON.parse(JSON.stringify(localStorage.getItem("theme"))) as ThemeType)
+    : initialThemes["navi"];
+
+// console.log(JSON.parse(storageUser), storageTheme);
+
 export const GlobalContext = React.createContext<IGlobalContextProps>({
-  user: initialUser,
+  user: storageUser,
   loading: true,
-  theme: initialThemes["navi"],
+  theme: storageTheme,
   setUser: () => void {},
   setTheme: () => void {},
   setLoading: () => void {},

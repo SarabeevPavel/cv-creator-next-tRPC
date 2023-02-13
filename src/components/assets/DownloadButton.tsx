@@ -3,7 +3,7 @@ import { TbFileDownload } from "react-icons/tb";
 import { handleSavePDF, handleSavePNG } from "../../utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import Link from "next/link";
+
 import { VscTriangleUp } from "react-icons/vsc";
 
 interface DownloadButtonProps {

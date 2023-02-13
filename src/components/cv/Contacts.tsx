@@ -10,6 +10,7 @@ interface ContactsProps {
 }
 
 export const Contacts: React.FC<ContactsProps> = ({ user, onChange }) => {
+  console.log(user);
   return (
     <div>
       <h3 className="text-md mb-2 text-left font-semibold uppercase">

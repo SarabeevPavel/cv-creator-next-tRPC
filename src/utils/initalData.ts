@@ -34,8 +34,8 @@ export const initialThemes = {
     additionalColor: "#663399", //purpure
   },
   sea_green: {
-    mainColor: "#008080",
-    additionalColor: "#3CB371", //sea green
+    mainColor: "#8FBC8F",
+    additionalColor: "#2F4F4F", //sea green
   },
   indigo_salmon: {
     mainColor: "#FFA07A", // salmon
@@ -43,7 +43,7 @@ export const initialThemes = {
   },
   honey_dew: {
     mainColor: "#F0FFF0", // honey_dew
-    additionalColor: "#BC8F8F", //rosy_brown
+    additionalColor: "#696969", //rosy_brown
   },
 };
 1;
