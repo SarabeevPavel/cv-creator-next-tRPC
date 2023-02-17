@@ -6,9 +6,11 @@ import { initialUser, initialThemes } from "../../utils";
 interface IGlobalContextProps {
   user: UserType;
   theme: ThemeType;
+  layout: string;
   loading: boolean;
   setUser: (user: UserType) => void;
   setTheme: (theme: ThemeType) => void;
+  setLayout: (layout: string) => void;
   setLoading: (loading: boolean) => void;
 }
 
@@ -20,15 +22,21 @@ const storageTheme =
   typeof window !== "undefined"
     ? (JSON.parse(JSON.stringify(localStorage.getItem("theme"))) as ThemeType)
     : initialThemes["navi"];
+const storageLayout =
+  typeof window !== "undefined"
+    ? (localStorage.getItem("storageLayout") as string)
+    : "variant-1";
 
 // console.log(JSON.parse(storageUser), storageTheme);
 
 export const GlobalContext = React.createContext<IGlobalContextProps>({
   user: storageUser,
   loading: true,
+  layout: storageLayout,
   theme: storageTheme,
   setUser: () => void {},
   setTheme: () => void {},
+  setLayout: () => void {},
   setLoading: () => void {},
 });
 
@@ -43,16 +51,19 @@ export const GlobalContextProvider = ({
   const [currentTheme, setCurrentTheme] = useState<ThemeType>(
     initialThemes["navi"]
   );
-  const [isLoading, setIsLoading] = useState(true);
+  const [currentLayout, setCurrentLayout] = useState<string>("sidebar-left");
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   return (
     <GlobalContext.Provider
       value={{
         user: currentUser,
         theme: currentTheme,
+        layout: currentLayout,
         loading: isLoading,
         setUser: setCurrentUser,
         setTheme: setCurrentTheme,
+        setLayout: setCurrentLayout,
         setLoading: setIsLoading,
       }}
     >

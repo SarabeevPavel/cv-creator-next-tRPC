@@ -46,4 +46,5 @@ export const initialThemes = {
     additionalColor: "#696969", //rosy_brown
   },
 };
-1;
+
+export const initialLayouts = ["sidebar-left", "sidebar-right"];

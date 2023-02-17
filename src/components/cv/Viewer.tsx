@@ -9,16 +9,23 @@ import {
   Summary,
   Stack,
   Projects,
+  SidebarLeft,
+  SidebarRight,
 } from "../cv";
-import ReactPDF from "@react-pdf/renderer";
 
 interface ViewerProps {
   user: UserType;
   onChange: (updatedUser: UserType) => void;
   theme: ThemeType;
+  layout: string;
 }
 
-export const Viewer: React.FC<ViewerProps> = ({ user, onChange, theme }) => {
+export const Viewer: React.FC<ViewerProps> = ({
+  user,
+  onChange,
+  theme,
+  layout,
+}) => {
   return (
     <motion.div
       initial={{ scale: 0.1 }}
@@ -26,52 +33,31 @@ export const Viewer: React.FC<ViewerProps> = ({ user, onChange, theme }) => {
       transition={{ type: "linear" }}
       className="styled-scrollbar h-full overflow-auto px-4 py-5"
     >
-      <div
-        id="cv-document"
-        className="flex h-[1000px] w-[700px] overflow-hidden"
-      >
-        <div
-          role="user-photo-info"
-          className="flex w-2/5 flex-col "
-          style={{
-            backgroundColor: theme.additionalColor,
-            color: theme.mainColor,
-          }}
-        >
-          <div role="avatar" className=" h-1/2 w-full">
-            <Avatar user={user} onChange={onChange} />
-          </div>
-          <div role="contacts" className="container ">
-            <Contacts user={user} onChange={onChange} />
-          </div>
-          <div role="languages" className="container ">
-            <Languages user={user} onChange={onChange} />
-          </div>
-        </div>
+      {layout === "sidebar-left" && (
+        <SidebarLeft
+          theme={theme}
+          avatar={<Avatar user={user} onChange={onChange} />}
+          contacts={<Contacts user={user} onChange={onChange} />}
+          languages={<Languages user={user} onChange={onChange} />}
+          profile={<Profile user={user} onChange={onChange} />}
+          summary={<Summary user={user} onChange={onChange} />}
+          stack={<Stack user={user} onChange={onChange} />}
+          projects={<Projects user={user} onChange={onChange} />}
+        />
+      )}
 
-        <div
-          role="user-about-stack"
-          className="w-3/5"
-          style={{
-            backgroundColor: theme.mainColor,
-            color: theme.additionalColor,
-          }}
-        >
-          <div role="name,position" className="h-1/8 container">
-            <Profile user={user} onChange={onChange} />
-          </div>
-          <div role="summary" className="container">
-            <Summary user={user} onChange={onChange} />
-          </div>
-
-          <div role="stack" className="container">
-            <Stack user={user} onChange={onChange} />
-          </div>
-          <div role="projects" className="container">
-            <Projects user={user} onChange={onChange} />
-          </div>
-        </div>
-      </div>
+      {layout === "sidebar-right" && (
+        <SidebarRight
+          theme={theme}
+          avatar={<Avatar user={user} onChange={onChange} />}
+          contacts={<Contacts user={user} onChange={onChange} />}
+          languages={<Languages user={user} onChange={onChange} />}
+          profile={<Profile user={user} onChange={onChange} />}
+          summary={<Summary user={user} onChange={onChange} />}
+          stack={<Stack user={user} onChange={onChange} />}
+          projects={<Projects user={user} onChange={onChange} />}
+        />
+      )}
     </motion.div>
   );
 };

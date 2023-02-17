@@ -4,16 +4,9 @@ import classNames from "classnames";
 import { AnimatePresence } from "framer-motion";
 import { Editor } from "../editor";
 import { FaPaintRoller } from "react-icons/fa";
+import { useGlobalContext } from "../../hooks";
 
-interface ConfigButtonProps {
-  theme: ThemeType;
-  onChange: (updatedTheme: ThemeType) => void;
-}
-
-export const ConfigButton: React.FC<ConfigButtonProps> = ({
-  onChange,
-  theme,
-}) => {
+export const ConfigButton: React.FC = ({}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -21,14 +14,7 @@ export const ConfigButton: React.FC<ConfigButtonProps> = ({
   return (
     <div className="relative">
       <AnimatePresence>
-        {isOpen && (
-          <Editor
-            isOpen={isOpen}
-            onClose={() => setIsOpen(false)}
-            currentTheme={theme}
-            onChange={onChange}
-          />
-        )}
+        {isOpen && <Editor isOpen={isOpen} onClose={() => setIsOpen(false)} />}
       </AnimatePresence>
 
       <button

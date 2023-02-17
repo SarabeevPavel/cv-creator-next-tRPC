@@ -18,7 +18,8 @@ import type { ThemeType, UserType } from "../../utils";
 // );
 
 const CV: NextPage = () => {
-  const { user, setUser, theme, setTheme } = useGlobalContext();
+  const { user, setUser, theme, setTheme, layout, setLayout } =
+    useGlobalContext();
 
   return (
     <div className="styled-scrollbar relative flex h-screen w-screen place-items-center items-end  justify-between bg-gray-900">
@@ -27,10 +28,7 @@ const CV: NextPage = () => {
           <HomeButton user={user} theme={theme} />
         </div>
         <div className="grid place-items-center p-5">
-          <ConfigButton
-            theme={theme}
-            onChange={(updatedTheme: ThemeType) => setTheme(updatedTheme)}
-          />
+          <ConfigButton />
         </div>
       </div>
       <div className="flex h-full w-3/4 justify-center gap-5 overflow-hidden">
@@ -38,6 +36,7 @@ const CV: NextPage = () => {
           user={user}
           onChange={(updatedUser: UserType) => setUser(updatedUser)}
           theme={theme}
+          layout={layout}
         />
       </div>
       <div className="flex h-full flex-col items-center justify-between">
