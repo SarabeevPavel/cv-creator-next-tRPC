@@ -24,10 +24,8 @@ const storageTheme =
     : initialThemes["navi"];
 const storageLayout =
   typeof window !== "undefined"
-    ? (localStorage.getItem("storageLayout") as string)
-    : "variant-1";
-
-// console.log(JSON.parse(storageUser), storageTheme);
+    ? (localStorage.getItem("layout") as string)
+    : "sidebar-left";
 
 export const GlobalContext = React.createContext<IGlobalContextProps>({
   user: storageUser,

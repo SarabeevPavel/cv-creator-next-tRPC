@@ -9,9 +9,14 @@ import Link from "next/link";
 interface HomeButtonProps {
   user: UserType;
   theme: ThemeType;
+  layout: string;
 }
 
-export const HomeButton: React.FC<HomeButtonProps> = ({ user, theme }) => {
+export const HomeButton: React.FC<HomeButtonProps> = ({
+  user,
+  theme,
+  layout,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -34,6 +39,7 @@ export const HomeButton: React.FC<HomeButtonProps> = ({ user, theme }) => {
                   setIsOpen(false);
                   localStorage.setItem("user", JSON.stringify(user));
                   localStorage.setItem("theme", JSON.stringify(theme));
+                  localStorage.setItem("layout", JSON.stringify(layout));
                 }}
               >
                 Save and exit

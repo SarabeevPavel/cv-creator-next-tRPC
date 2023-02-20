@@ -16,21 +16,26 @@ export const ThemesList: React.FC<ThemeListProps> = ({
   const themes = initialThemes;
 
   if (tab !== "themes") return null;
-
   return (
-    <ul className="grid grid-cols-2 gap-5">
+    <ul className="hide-scrollbar grid grid-cols-2 gap-4 overflow-y-auto">
       {Object.entries(themes).map(([name, value], index) => (
         <li key={index} className="grid place-items-center">
-          <button className="text-center" onClick={() => onChange(value)}>
+          <button
+            className="grid place-items-center text-center"
+            onClick={() => onChange(value)}
+          >
             <div
               className={classNames(
-                currentTheme === value ? "rgb-background" : "bg-transparent",
+                JSON.stringify(currentTheme) === JSON.stringify(value)
+                  ? "rgb-background"
+                  : "bg-transparent",
                 "grid h-24 w-24 place-items-center rounded-lg bg-gray-700"
               )}
             >
               <div
                 className={classNames(
-                  value === currentTheme && "ring-2",
+                  JSON.stringify(currentTheme) === JSON.stringify(value) &&
+                    "ring-2",
                   "relative h-20 w-20 overflow-hidden "
                 )}
                 style={{ backgroundColor: value.mainColor }}
@@ -41,7 +46,7 @@ export const ThemesList: React.FC<ThemeListProps> = ({
                 ></div>
               </div>
             </div>
-            <p className="text-center first-letter:uppercase">
+            <p className="text-center capitalize">
               {name.split("_").join(" ")}
             </p>
           </button>

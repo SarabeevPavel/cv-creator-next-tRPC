@@ -1,6 +1,10 @@
 import classNames from "classnames";
 import { initialLayouts } from "../../utils";
-import { BsLayoutSidebar, BsLayoutSidebarReverse } from "react-icons/bs";
+import {
+  BsLayoutTextSidebar,
+  BsLayoutTextSidebarReverse,
+  BsLayoutTextWindowReverse,
+} from "react-icons/bs";
 
 interface LayoutsListProps {
   tab: string;
@@ -32,9 +36,14 @@ export const LayoutsList: React.FC<LayoutsListProps> = ({
               )}
             >
               <div className="grid h-20 w-20 place-items-center rounded-lg bg-gray-700">
-                {layout === "sidebar-left" && <BsLayoutSidebar size={60} />}
+                {layout === "sidebar-left" && (
+                  <BsLayoutTextSidebarReverse size={60} />
+                )}
                 {layout === "sidebar-right" && (
-                  <BsLayoutSidebarReverse size={60} />
+                  <BsLayoutTextSidebar size={60} />
+                )}
+                {layout === "sidebar-top" && (
+                  <BsLayoutTextWindowReverse size={60} />
                 )}
               </div>
             </div>

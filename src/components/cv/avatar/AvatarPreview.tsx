@@ -20,22 +20,22 @@ export const AvatarPreview: React.FC<AvatarPreviewProps> = ({
   return (
     <div className="group relative h-full w-full">
       <Image
-        src={avatar}
+        src={avatar === "default" ? "/default-avatar.jpg" : avatar}
         alt="avatar"
         className="h-full w-full object-cover"
         width={1000}
         height={1000}
       />
       <div className="absolute top-0 bottom-0 left-0 right-0 grid place-items-center opacity-0 duration-200 ease-in-out group-hover:bg-black/30 group-hover:opacity-100">
-        <div className="flex w-2/3 justify-between">
+        <div className="flex w-full justify-evenly">
           <button
-            className="grid h-20 w-20 place-items-center rounded-full bg-white/40 hover:bg-red-600 hover:text-white"
+            className="mr-2 grid h-20 w-20 place-items-center rounded-full bg-white/40 text-white/75 hover:bg-red-600 hover:text-white"
             onClick={onDelete}
           >
             <FaTrashAlt size={25} />
           </button>
           <button
-            className="grid h-20 w-20 place-items-center rounded-full bg-white/40 hover:bg-blue-500 hover:text-white"
+            className="grid h-20 w-20 place-items-center rounded-full bg-white/40 text-white/75 hover:bg-blue-500 hover:text-white"
             onClick={() => setIsOpen(true)}
           >
             <BiCrop size={25} />

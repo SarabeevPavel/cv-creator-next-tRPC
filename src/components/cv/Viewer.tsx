@@ -11,6 +11,7 @@ import {
   Projects,
   SidebarLeft,
   SidebarRight,
+  SidebarTop,
 } from "../cv";
 
 interface ViewerProps {
@@ -48,6 +49,19 @@ export const Viewer: React.FC<ViewerProps> = ({
 
       {layout === "sidebar-right" && (
         <SidebarRight
+          theme={theme}
+          avatar={<Avatar user={user} onChange={onChange} />}
+          contacts={<Contacts user={user} onChange={onChange} />}
+          languages={<Languages user={user} onChange={onChange} />}
+          profile={<Profile user={user} onChange={onChange} />}
+          summary={<Summary user={user} onChange={onChange} />}
+          stack={<Stack user={user} onChange={onChange} />}
+          projects={<Projects user={user} onChange={onChange} />}
+        />
+      )}
+
+      {layout === "sidebar-top" && (
+        <SidebarTop
           theme={theme}
           avatar={<Avatar user={user} onChange={onChange} />}
           contacts={<Contacts user={user} onChange={onChange} />}

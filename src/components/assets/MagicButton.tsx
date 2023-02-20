@@ -18,38 +18,21 @@ export const MagicButton: React.FC<MagicButtonProps> = ({ user, onChange }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  const [generatedSummary, setGeneratedSummary] = useState<null | string>(null);
-  const [generatedStack, setGeneratedStack] = useState<null | string[]>(null);
-
   useEffect(() => {
-    if (generatedSummary && generatedStack) {
-      onChange({
-        ...user,
-        summary: generatedSummary,
-        technologies: generatedStack,
-      });
-      setGeneratedSummary(null);
-      setGeneratedStack(null);
-    }
-  }, [generatedStack, generatedSummary, onChange, user]);
+    setIsOpen(false);
+  }, [user]);
 
-  const { mutate: genStack } = trpc.cv.generateStack.useMutation();
-  const { mutate: genNewSummary } = trpc.cv.generateSummary.useMutation();
-  const { mutate: genConSummary } = trpc.cv.continueSummary.useMutation();
-
-  const genSummary =
-    user.summary.length > 15 && user.summary.length < 50
-      ? genConSummary
-      : genNewSummary;
+  const { mutate } = trpc.cv.generateFullCV.useMutation();
 
   const handleGenerate = () => {
     setIsLoading(true);
-    genSummary(
+    mutate(
       { text: user.position },
       {
         onSuccess: (res) => {
           if (res) {
-            setGeneratedSummary(res.trim());
+            const newUser = JSON.parse(res) as UserType;
+            onChange(newUser);
           }
           setIsError(false);
           toast.success("Generated success!");
@@ -57,31 +40,6 @@ export const MagicButton: React.FC<MagicButtonProps> = ({ user, onChange }) => {
         onError: () => {
           setIsError(true);
           toast.error("Oops, something's gone wrong. Try again!");
-        },
-        onSettled: () => {
-          setIsLoading(false);
-        },
-      }
-    );
-
-    genStack(
-      { text: user.position },
-      {
-        onSuccess: (res) => {
-          if (res) {
-            const getArrayFromString = (str: string) => {
-              return str
-                .split("\n")
-                .map((item) => item.split(".")[1])
-                .filter((item) => typeof item === "string" && item.trim());
-            };
-            const newStack = getArrayFromString(res);
-            setGeneratedStack(newStack as string[]);
-          }
-          setIsError(false);
-        },
-        onError: () => {
-          setIsError(true);
         },
         onSettled: () => {
           setIsLoading(false);
@@ -99,9 +57,9 @@ export const MagicButton: React.FC<MagicButtonProps> = ({ user, onChange }) => {
             animate={{ scale: 1, y: -63, x: 5 }}
             exit={{ scale: 0.1, y: 0, x: 30 }}
             transition={{ type: "linear", duration: 0.2 }}
-            className="absolute -top-5 right-5 grid w-32 -translate-y-full transform place-items-center rounded-xl bg-gray-800 p-2 text-white/80"
+            className="absolute bottom-1/3 right-5 grid w-32 transform place-items-center rounded-xl bg-gray-800 p-2 text-white/80"
           >
-            <h3 className="mb-2 text-center">Generate?</h3>
+            <h3 className="mb-2 text-center">Generate new full CV?</h3>
             <motion.div>
               <button
                 className="mr-2 hover:text-green-400"
@@ -118,6 +76,7 @@ export const MagicButton: React.FC<MagicButtonProps> = ({ user, onChange }) => {
               >
                 Cancel
               </button>
+
               <VscTriangleUp
                 className="absolute right-2 bottom-0 translate-y-5 rotate-180 transform text-gray-800"
                 size={30}

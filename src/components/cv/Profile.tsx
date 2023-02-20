@@ -19,9 +19,7 @@ export const Profile: React.FC<ProfileProps> = ({ user, onChange }) => {
           });
         }}
         value={user.name}
-        styles={
-          "text-center text-3xl rounded-xl hover:bg-gray-300 focus:bg-gray-300 font-bold"
-        }
+        styles={"text-center text-3xl rounded-xl font-bold"}
       />
       <Input
         placeholder="Position"
@@ -33,7 +31,7 @@ export const Profile: React.FC<ProfileProps> = ({ user, onChange }) => {
         }}
         value={user.position}
         styles={
-          "text-center h-8 text-lg uppercase rounded-xl hover:bg-gray-300 focus:bg-gray-300 font-bold opacity-80"
+          "text-center h-8 text-lg uppercase rounded-xl  font-bold opacity-80"
         }
       />
     </div>

@@ -60,7 +60,7 @@ export const Languages: React.FC<LanguagesProps> = ({ user, onChange }) => {
             editing
               ? "opacity-100 transition-opacity duration-200"
               : "opacity-0 transition-opacity duration-200",
-            "absolute left-1/2 z-10 mx-auto mt-2 flex w-2/3 -translate-x-1/2 items-center justify-center rounded-xl bg-black/50 p-2 duration-200 ease-in-out"
+            "absolute left-1/2 z-10 mx-auto mt-2 flex w-full -translate-x-1/2 items-center justify-center rounded-xl bg-black/50 p-2 duration-200 ease-in-out"
           )}
         >
           <Input
@@ -69,7 +69,7 @@ export const Languages: React.FC<LanguagesProps> = ({ user, onChange }) => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setValue(e.currentTarget.value)
             }
-            styles="bg-white/60 rounded-lg placeholder:text-black/50 text-black"
+            styles="bg-white/60  rounded-lg placeholder:text-black/50 text-black"
           />
           <AddButton
             view={isOpen}

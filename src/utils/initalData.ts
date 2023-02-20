@@ -47,4 +47,4 @@ export const initialThemes = {
   },
 };
 
-export const initialLayouts = ["sidebar-left", "sidebar-right"];
+export const initialLayouts = ["sidebar-left", "sidebar-right", "sidebar-top"];

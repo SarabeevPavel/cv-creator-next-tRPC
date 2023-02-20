@@ -2,15 +2,9 @@ interface UploaderProps {
   onUpload: (imageUrl: string) => void;
   position: string;
   isLoading: boolean;
-  // onGenerate: () => void;
 }
 
-export const Uploader: React.FC<UploaderProps> = ({
-  onUpload,
-  position,
-  isLoading,
-  // onGenerate,
-}) => {
+export const Uploader: React.FC<UploaderProps> = ({ onUpload, isLoading }) => {
   return (
     <div className="flex w-2/3 flex-col justify-center">
       <div className="group relative h-10 w-full">
@@ -38,18 +32,6 @@ export const Uploader: React.FC<UploaderProps> = ({
             return;
           }}
         />
-      </div>
-      {/* <span>or</span> */}
-      <div>
-        {/* <ButtonGenerate
-          position={position}
-          title="avatar"
-          onClick={onGenerate}
-          isLoading={isLoading}
-          disabledConfig={
-            position ? !position?.trim().length || isLoading : true || isLoading
-          }
-        /> */}
       </div>
     </div>
   );

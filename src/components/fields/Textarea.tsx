@@ -23,8 +23,8 @@ export const Textarea: React.FC<TextareaProps> = ({
 }) => {
   return (
     <div className="field-container group flex flex-col">
-      <div className="mb-2 flex w-full items-center">
-        <label className="mb-1 ml-2 font-semibold uppercase">{label}</label>
+      <div className="mb-1 flex w-full items-center">
+        <label className="ml-2 font-semibold uppercase">{label}</label>
       </div>
 
       <ReactTextareaAutosize
@@ -34,7 +34,7 @@ export const Textarea: React.FC<TextareaProps> = ({
           "default-input hide-scrollbar resize-none"
         )}
         placeholder={placeholder}
-        maxLength={maxLength || 300}
+        maxLength={maxLength || 450}
         value={value}
         disabled={isLoading}
         minRows={2}

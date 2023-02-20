@@ -26,16 +26,6 @@ export const Avatar: React.FC<AvatarProps> = ({ user, onChange }) => {
           onUpload={(imageUrl) => onChange({ ...user, avatar: imageUrl })}
           position={user.position}
           isLoading={isLoading}
-          // onGenerate={async () => {
-          //   toggleLoading(true)
-          //   await toast.promise(handleGenerateAvatar(user, onChange), {
-          //     pending: "Looking for an avatar 🤖🔍",
-          //     success: "Avatar is found 🟢",
-          //     error: "Error 🔴",
-          //   })
-
-          //   toggleLoading(false)
-          // }}
         />
       )}
     </div>

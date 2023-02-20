@@ -9,7 +9,7 @@ import {
   HomeButton,
   // PDFDownload,
 } from "../../components";
-import type { ThemeType, UserType } from "../../utils";
+import type { UserType } from "../../utils";
 // import ReactPDF, { Document, PDFDownloadLink, Page } from "@react-pdf/renderer";
 // import dynamic from "next/dynamic";
 
@@ -18,14 +18,13 @@ import type { ThemeType, UserType } from "../../utils";
 // );
 
 const CV: NextPage = () => {
-  const { user, setUser, theme, setTheme, layout, setLayout } =
-    useGlobalContext();
+  const { user, setUser, theme, layout } = useGlobalContext();
 
   return (
     <div className="styled-scrollbar relative flex h-screen w-screen place-items-center items-end  justify-between bg-gray-900">
       <div className="flex h-full flex-col items-center justify-between">
         <div className="p-5">
-          <HomeButton user={user} theme={theme} />
+          <HomeButton user={user} theme={theme} layout={layout} />
         </div>
         <div className="grid place-items-center p-5">
           <ConfigButton />

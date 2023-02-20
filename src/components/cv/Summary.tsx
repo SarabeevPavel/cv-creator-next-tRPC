@@ -26,7 +26,7 @@ export const Summary: React.FC<SummaryProps> = ({ user, onChange }) => {
             summary: e.currentTarget.value,
           });
         }}
-        styles="rounded-xl hover:bg-gray-300 focus:bg-gray-300 px-2 py-3 h-48"
+        styles="rounded-xl px-2 py-3 h-48"
         isLoading={isLoading}
       />
     </div>
