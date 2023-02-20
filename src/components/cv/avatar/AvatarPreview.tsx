@@ -47,7 +47,7 @@ export const AvatarPreview: React.FC<AvatarPreviewProps> = ({
         open={isOpen}
         onClose={() => setIsOpen(false)}
         onCrop={onCrop}
-        avatarUrl={avatar}
+        avatarUrl={avatar === "default" ? "/default-avatar.jpg" : avatar}
       />
     </div>
   );
