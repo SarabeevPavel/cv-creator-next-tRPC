@@ -26,6 +26,7 @@ export const AvatarPreview: React.FC<AvatarPreviewProps> = ({
         width={1000}
         height={1000}
       />
+
       <div className="absolute top-0 bottom-0 left-0 right-0 grid place-items-center opacity-0 duration-200 ease-in-out group-hover:bg-black/30 group-hover:opacity-100">
         <div className="flex w-full justify-evenly">
           <button

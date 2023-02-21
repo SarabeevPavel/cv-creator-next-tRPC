@@ -6,7 +6,7 @@ interface UploaderProps {
 
 export const Uploader: React.FC<UploaderProps> = ({ onUpload, isLoading }) => {
   return (
-    <div className="flex w-2/3 flex-col justify-center">
+    <div className="flex w-full flex-col justify-center p-4">
       <div className="group relative h-10 w-full">
         <button
           disabled={isLoading}

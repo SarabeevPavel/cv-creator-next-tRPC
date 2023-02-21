@@ -42,14 +42,15 @@ export const DownloadButton: React.FC<DownloadButtonProps> = ({
                 .PNG
               </button>
               <button
-                disabled={true}
-                className="mb-1 text-center text-white/40 hover:text-green-400 disabled:hover:text-red-400"
+                // disabled={true}
+                className="mb-1 text-center text-white hover:text-green-400 disabled:text-white/40 disabled:hover:text-red-400"
                 onClick={() => {
                   handleSavePDF(rootElementId, downloadFileName);
                   setIsOpen(false);
                 }}
               >
-                <s>.PDF</s>
+                {/* <s>.PDF</s> */}
+                .PDF
               </button>
 
               <VscTriangleUp

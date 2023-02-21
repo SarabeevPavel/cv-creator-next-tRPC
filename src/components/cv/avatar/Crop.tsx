@@ -61,3 +61,13 @@ export const Crop: React.FC<CropProps> = ({
     </div>
   );
 };
+
+//  <button
+//    className={classNames(
+//      layout === "sidebar-top" ? "mr-1 h-7 w-12 text-sm" : "mr-4 h-10 w-36",
+//      " rounded-xl bg-green-500 text-white/80 duration-200 ease-in-out hover:bg-green-700 hover:text-white hover:shadow-lg"
+//    )}
+//    onClick={handleCrop}
+//  >
+//    Save
+//  </button>;

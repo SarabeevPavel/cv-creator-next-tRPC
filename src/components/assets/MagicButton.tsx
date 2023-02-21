@@ -22,30 +22,97 @@ export const MagicButton: React.FC<MagicButtonProps> = ({ user, onChange }) => {
     setIsOpen(false);
   }, [user]);
 
-  const { mutate } = trpc.cv.generateFullCV.useMutation();
+  const { mutate: genFullCv } = trpc.cv.generateFullCV.useMutation();
+  const { mutate: genStack } = trpc.cv.generateStack.useMutation();
+  const { mutate: genNewSummary } = trpc.cv.generateSummary.useMutation();
+  const { mutate: genConSummary } = trpc.cv.continueSummary.useMutation();
 
-  const handleGenerate = () => {
+  const genSummary =
+    user.summary.length > 15 && user.summary.length < 150
+      ? genConSummary
+      : genNewSummary;
+
+  const handleGenerate = (operation?: string) => {
     setIsLoading(true);
-    mutate(
-      { text: user.position },
-      {
-        onSuccess: (res) => {
-          if (res) {
-            const newUser = JSON.parse(res) as UserType;
-            onChange(newUser);
-          }
-          setIsError(false);
-          toast.success("Generated success!");
+    if (operation === "full-cv") {
+      genFullCv(
+        { text: user.position },
+        {
+          onSuccess: (res) => {
+            if (res) {
+              const newUser = JSON.parse(res) as UserType;
+              onChange(newUser);
+            }
+            setIsError(false);
+            toast.success("Generated success!");
+          },
+          onError: () => {
+            setIsError(true);
+            toast.error("Oops, something's gone wrong. Try again!");
+          },
+          onSettled: () => {
+            setIsLoading(false);
+          },
+        }
+      );
+    }
+    if (operation === "summary") {
+      genSummary(
+        {
+          text:
+            user.summary.length > 15 && user.summary.length < 150
+              ? user.summary
+              : user.position,
         },
-        onError: () => {
-          setIsError(true);
-          toast.error("Oops, something's gone wrong. Try again!");
-        },
-        onSettled: () => {
-          setIsLoading(false);
-        },
-      }
-    );
+        {
+          onSuccess: (res) => {
+            if (res) {
+              onChange({
+                ...user,
+                summary:
+                  user.summary.length > 15 && user.summary.length < 150
+                    ? user.summary + res.trim()
+                    : res.trim(),
+              });
+            }
+            setIsError(false);
+            toast.success("Generated success!");
+          },
+          onError: () => {
+            setIsError(true);
+            toast.error("Oops, something's gone wrong. Try again!");
+          },
+          onSettled: () => {
+            setIsLoading(false);
+          },
+        }
+      );
+    }
+
+    if (operation === "stack") {
+      genStack(
+        { text: user.position },
+        {
+          onSuccess: (res) => {
+            if (res) {
+              const getArrayFromString = (str: string) => {
+                return str
+                  .split("\n")
+                  .map((item) => item.split(".")[1])
+                  .filter((item) => typeof item === "string" && item.trim());
+              };
+              const newStack = getArrayFromString(res);
+              // setGeneratedStack(newStack as string[]);
+              onChange({ ...user, technologies: newStack as string[] });
+            }
+            setIsError(false);
+          },
+          onError: () => {
+            setIsError(true);
+          },
+        }
+      );
+    }
   };
 
   return (
@@ -57,21 +124,42 @@ export const MagicButton: React.FC<MagicButtonProps> = ({ user, onChange }) => {
             animate={{ scale: 1, y: -63, x: 5 }}
             exit={{ scale: 0.1, y: 0, x: 30 }}
             transition={{ type: "linear", duration: 0.2 }}
-            className="absolute bottom-1/3 right-5 grid w-32 transform place-items-center rounded-xl bg-gray-800 p-2 text-white/80"
+            className="absolute bottom-1/3 right-5 flex w-32 transform flex-col place-items-center rounded-xl bg-gray-800 p-2 text-white/80"
           >
-            <h3 className="mb-2 text-center">Generate new full CV?</h3>
-            <motion.div>
+            <h3 className="mb-2 text-center font-bold">What generate?</h3>
+            <motion.div className="flex flex-col justify-center">
               <button
-                className="mr-2 hover:text-green-400"
+                className="mr-2 hover:text-blue-400"
                 onClick={() => {
                   setIsOpen(false);
-                  handleGenerate();
+                  handleGenerate("full-cv");
                 }}
               >
-                Yes
+                Random CV
               </button>
+
               <button
-                className="hover:text-red-400"
+                className="mr-2 hover:text-blue-400"
+                onClick={() => {
+                  setIsOpen(false);
+                  handleGenerate("summary");
+                }}
+              >
+                Summary
+              </button>
+
+              <button
+                className="mr-2 hover:text-blue-400"
+                onClick={() => {
+                  setIsOpen(false);
+                  handleGenerate("stack");
+                }}
+              >
+                Stack
+              </button>
+
+              <button
+                className="mt-1 font-semibold hover:text-red-400"
                 onClick={() => setIsOpen(false)}
               >
                 Cancel

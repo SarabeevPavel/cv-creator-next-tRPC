@@ -48,13 +48,17 @@ export const About: React.FC<AboutProps> = ({
           disabled={value.length < 10 || isLoading}
           className={classNames(
             value.length >= 10 &&
+              isError &&
+              "bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 hover:bg-gradient-to-br hover:text-white",
+            value.length >= 10 &&
+              !isError &&
               "bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br hover:text-white",
             "default-button  mx-auto my-2 mr-2 mb-2 w-2/5 rounded-lg  px-5 py-2.5 text-center text-sm font-medium text-white/90 disabled:bg-gray-600 disabled:text-white/60 disabled:hover:bg-gray-600 disabled:hover:text-white/60"
           )}
           onClick={onGenerate}
         >
           <Loader isLoading={isLoading} color="white" size={30} />
-          {!isLoading && <span>Continue</span>}
+          {!isLoading && !isError && <span>Continue</span>}
           {isError && !isLoading && <span>Try again</span>}
         </button>
         <button

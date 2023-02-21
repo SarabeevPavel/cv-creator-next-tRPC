@@ -16,7 +16,7 @@ export const Languages: React.FC<LanguagesProps> = ({ user, onChange }) => {
 
   return (
     <div className="group relative">
-      <div className="flex">
+      <div className="flex ">
         <h3 className="text-md mb-2 text-left font-semibold uppercase">
           Languages
         </h3>

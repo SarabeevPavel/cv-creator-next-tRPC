@@ -12,7 +12,7 @@ export const Avatar: React.FC<AvatarProps> = ({ user, onChange }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center">
+    <div className="relative flex h-full w-full flex-col items-center justify-center">
       {user.avatar ? (
         <AvatarPreview
           avatar={user.avatar}

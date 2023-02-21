@@ -26,13 +26,14 @@ export const cvRouter = createTRPCRouter({
         .replace("\\", "");
 
       JSON.parse(JSON.stringify(result as string));
+
       return result;
     }),
 
   generateFullCV: publicProcedure
     .input(z.object({ text: z.string() }))
     .mutation(async ({ input }) => {
-      const prompt = `Create for user by the next schema:{"avatar": "default","name": "Generate random user name - Name Surname","summary": "Generate a summary on POV for a CV based on the data from the text entered by the user and continue it, if there is not enough data generate a user position.Maximum length - 350 symbols","position": "put here position user","languages": "generate array of 10 colloquial languages","technologies": "generate array of 12 techlogies by user's position","contacts": {"tel": "generate random tel number","email": "generate random email","location": "generate random location in format: City, Country"}, "projects":"generate 2 object by example:{"title": "random title of project", "description": "random  project's description", "repositoryUrl":"example.com"}"} - by user postion:"${input.text}"`;
+      const prompt = `Create for user by the next schema:{"avatar": "default","name": "Generate random user name - Name Surname","summary": "Generate a summary on first person format for a CV based on the data from the text entered by the user and continue it, if there is not enough data generate a user position.Maximum length - 350 symbols","position": "put here position user","languages": "generate array of 10 colloquial languages","technologies": "generate array of 12 techlogies by user's position","contacts": {"tel": "generate random tel number","email": "generate random email","location": "generate random location in format: City, Country"}, "projects":"generate 2 object by example:{"title": "random title of project", "description": "random  project's description", "repositoryUrl":"example.com"}"} - by user postion:"${input.text}"`;
       const res = await openai.createCompletion({
         model: "text-davinci-003",
         prompt: `${prompt}`,
@@ -51,7 +52,7 @@ export const cvRouter = createTRPCRouter({
   generateSummary: publicProcedure
     .input(z.object({ text: z.string() }))
     .mutation(async ({ input }) => {
-      const prompt = `Create a CV summary for the position:${input.text}`;
+      const prompt = `Create a CV summary for the position.Maximum length 250 symbols. Continue this text:${input.text}`;
       const res = await openai.createCompletion({
         model: "text-davinci-003",
         prompt: `${prompt}`,
@@ -69,7 +70,7 @@ export const cvRouter = createTRPCRouter({
   continueSummary: publicProcedure
     .input(z.object({ text: z.string() }))
     .mutation(async ({ input }) => {
-      const prompt = `Continue a CV summary:${input.text}`;
+      const prompt = `Continue a text form summary in CV by first person, :${input.text}`;
       const res = await openai.createCompletion({
         model: "text-davinci-003",
         prompt: `${prompt}`,

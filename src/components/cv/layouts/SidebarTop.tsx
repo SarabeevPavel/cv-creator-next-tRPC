@@ -36,8 +36,13 @@ export const SidebarTop: React.FC<SidebarTopProps> = ({
             color: theme.mainColor,
           }}
         >
-          <div role="avatar" className="h-full w-1/3 overflow-hidden">
-            {avatar}
+          <div
+            role="avatar"
+            className="grid h-full w-1/3 place-items-center overflow-hidden"
+          >
+            <div className="h-4/5 w-4/5 overflow-hidden rounded-2xl">
+              {avatar}
+            </div>
           </div>
           <div className="w-2/3">
             <div role="name,position" className="h-1/8 container">
@@ -70,41 +75,25 @@ export const SidebarTop: React.FC<SidebarTopProps> = ({
             role="projects"
             className="w-2/3"
             style={{
-              backgroundColor: theme.mainColor,
-              color: theme.additionalColor,
+              backgroundColor: theme.additionalColor,
             }}
           >
-            <div role="stack" className="container grid grid-cols-1">
-              {stack}
-            </div>
-            <div role="projects" className="container">
-              {projects}
+            <div
+              className="h-full w-full rounded-tl-xl"
+              style={{
+                backgroundColor: theme.mainColor,
+                color: theme.additionalColor,
+              }}
+            >
+              <div role="stack" className="container grid grid-cols-1">
+                {stack}
+              </div>
+              <div role="projects" className="container">
+                {projects}
+              </div>
             </div>
           </div>
         </div>
-
-        {/* <div
-          role="user-about-stack"
-          className="w-3/5"
-          style={{
-            backgroundColor: theme.mainColor,
-            color: theme.additionalColor,
-          }}
-        >
-          <div role="name,position" className="h-1/8 container">
-            {profile}
-          </div>
-          <div role="summary" className="container">
-            {summary}
-          </div>
-
-          <div role="stack" className="container">
-            {stack}
-          </div>
-          <div role="projects" className="container">
-            {projects}
-          </div>
-        </div> */}
       </div>
     </div>
   );
