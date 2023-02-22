@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/await-thenable */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
@@ -14,8 +15,20 @@ import { toast } from "react-toastify";
 
 export const handleSavePDF = (
   rootElementId: string,
-  downloadFileName: string
+  downloadFileName: string,
+  ref?: React.RefObject<HTMLElement>
 ) => {
+  // const doc = new jsPDF({
+  //   format: "a4",
+  //   unit: "px",
+  // });
+  // if (typeof ref !== null) {
+  //   doc.html(ref.current, {
+  //     async callback(doc) {
+  //       await doc.save("document");
+  //     },
+  //   });
+  // }
   const input = document.getElementById(rootElementId);
   if (!input) return;
   html2canvas(input, { logging: true }).then((canvas) => {

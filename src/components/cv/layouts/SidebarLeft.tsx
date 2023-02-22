@@ -10,6 +10,7 @@ interface SidebarLeftProps {
   summary: ReactNode;
   stack: ReactNode;
   projects: ReactNode;
+  ref: React.RefObject<HTMLDivElement>;
 }
 
 export const SidebarLeft: React.FC<SidebarLeftProps> = ({
@@ -21,11 +22,13 @@ export const SidebarLeft: React.FC<SidebarLeftProps> = ({
   summary,
   stack,
   projects,
+  ref,
 }) => {
   return (
     <div>
       <div
         id="cv-document"
+        ref={ref}
         className="flex h-[1000px] w-[700px] overflow-hidden"
       >
         <div

@@ -9,11 +9,13 @@ import { VscTriangleUp } from "react-icons/vsc";
 interface DownloadButtonProps {
   rootElementId: string;
   downloadFileName: string;
+  ref: React.RefObject<HTMLDivElement>;
 }
 
 export const DownloadButton: React.FC<DownloadButtonProps> = ({
   rootElementId,
   downloadFileName,
+  ref,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -41,11 +43,12 @@ export const DownloadButton: React.FC<DownloadButtonProps> = ({
               >
                 .PNG
               </button>
+
               <button
                 // disabled={true}
                 className="mb-1 text-center text-white hover:text-green-400 disabled:text-white/40 disabled:hover:text-red-400"
                 onClick={() => {
-                  handleSavePDF(rootElementId, downloadFileName);
+                  handleSavePDF(rootElementId, downloadFileName, ref);
                   setIsOpen(false);
                 }}
               >

@@ -19,6 +19,7 @@ interface ViewerProps {
   onChange: (updatedUser: UserType) => void;
   theme: ThemeType;
   layout: string;
+  ref: React.RefObject<HTMLDivElement>;
 }
 
 export const Viewer: React.FC<ViewerProps> = ({
@@ -26,6 +27,7 @@ export const Viewer: React.FC<ViewerProps> = ({
   onChange,
   theme,
   layout,
+  ref,
 }) => {
   return (
     <motion.div
@@ -44,6 +46,7 @@ export const Viewer: React.FC<ViewerProps> = ({
           summary={<Summary user={user} onChange={onChange} />}
           stack={<Stack user={user} onChange={onChange} />}
           projects={<Projects user={user} onChange={onChange} />}
+          ref={ref}
         />
       )}
 
