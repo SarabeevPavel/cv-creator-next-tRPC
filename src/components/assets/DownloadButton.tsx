@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { TbFileDownload } from "react-icons/tb";
-import { handleSavePDF, handleSavePNG } from "../../utils";
+import { handleSavePNG } from "../../utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 
@@ -9,13 +9,11 @@ import { VscTriangleUp } from "react-icons/vsc";
 interface DownloadButtonProps {
   rootElementId: string;
   downloadFileName: string;
-  ref: React.RefObject<HTMLDivElement>;
 }
 
 export const DownloadButton: React.FC<DownloadButtonProps> = ({
   rootElementId,
   downloadFileName,
-  ref,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -44,17 +42,19 @@ export const DownloadButton: React.FC<DownloadButtonProps> = ({
                 .PNG
               </button>
 
-              <button
+              <a
                 // disabled={true}
+                href="/api/pdf"
+                download="generated_pdf.pdf"
                 className="mb-1 text-center text-white hover:text-green-400 disabled:text-white/40 disabled:hover:text-red-400"
                 onClick={() => {
-                  handleSavePDF(rootElementId, downloadFileName, ref);
+                  // handleSavePDF(rootElementId, downloadFileName, ref);
                   setIsOpen(false);
                 }}
               >
                 {/* <s>.PDF</s> */}
                 .PDF
-              </button>
+              </a>
 
               <VscTriangleUp
                 className="absolute right-4 top-0 -translate-y-5 transform text-gray-800"

@@ -10,7 +10,6 @@ interface SidebarLeftProps {
   summary: ReactNode;
   stack: ReactNode;
   projects: ReactNode;
-  ref: React.RefObject<HTMLDivElement>;
 }
 
 export const SidebarLeft: React.FC<SidebarLeftProps> = ({
@@ -22,55 +21,48 @@ export const SidebarLeft: React.FC<SidebarLeftProps> = ({
   summary,
   stack,
   projects,
-  ref,
 }) => {
   return (
-    <div>
+    <div id="cv-document" className="flex h-full w-full overflow-hidden">
       <div
-        id="cv-document"
-        ref={ref}
-        className="flex h-[1000px] w-[700px] overflow-hidden"
+        role="user-photo-info"
+        className="flex w-2/5 flex-col"
+        style={{
+          backgroundColor: theme.additionalColor,
+          color: theme.mainColor,
+        }}
       >
-        <div
-          role="user-photo-info"
-          className="flex w-2/5 flex-col "
-          style={{
-            backgroundColor: theme.additionalColor,
-            color: theme.mainColor,
-          }}
-        >
-          <div role="avatar" className=" h-1/2 w-full">
-            {avatar}
-          </div>
-          <div role="contacts" className="container ">
-            {contacts}
-          </div>
-          <div role="languages" className="container ">
-            {languages}
-          </div>
+        <div role="avatar" className=" h-1/2 w-full">
+          {avatar}
+        </div>
+        <div role="contacts" className="container ">
+          {contacts}
+        </div>
+        <div role="languages" className="container ">
+          {languages}
+        </div>
+      </div>
+
+      <div
+        role="user-about-stack"
+        className="w-3/5"
+        style={{
+          backgroundColor: theme.mainColor,
+          color: theme.additionalColor,
+        }}
+      >
+        <div role="name,position" className="h-1/8 container">
+          {profile}
+        </div>
+        <div role="summary" className="container">
+          {summary}
         </div>
 
-        <div
-          role="user-about-stack"
-          className="w-3/5"
-          style={{
-            backgroundColor: theme.mainColor,
-            color: theme.additionalColor,
-          }}
-        >
-          <div role="name,position" className="h-1/8 container">
-            {profile}
-          </div>
-          <div role="summary" className="container">
-            {summary}
-          </div>
-
-          <div role="stack" className="container">
-            {stack}
-          </div>
-          <div role="projects" className="container">
-            {projects}
-          </div>
+        <div role="stack" className="container">
+          {stack}
+        </div>
+        <div role="projects" className="container">
+          {projects}
         </div>
       </div>
     </div>

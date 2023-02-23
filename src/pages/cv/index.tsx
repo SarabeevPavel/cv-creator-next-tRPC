@@ -7,20 +7,11 @@ import {
   ConfigButton,
   DownloadButton,
   HomeButton,
-  // PDFDownload,
 } from "../../components";
 import type { UserType } from "../../utils";
-import { useRef } from "react";
-// import ReactPDF, { Document, PDFDownloadLink, Page } from "@react-pdf/renderer";
-// import dynamic from "next/dynamic";
-
-// const InvoicePDF = dynamic(
-//   () => import("../../components/cv/pdfComponent/pdf")
-// );
 
 const CV: NextPage = () => {
   const { user, setUser, theme, layout } = useGlobalContext();
-  const documentRef = useRef(null);
 
   return (
     <div className="styled-scrollbar relative flex h-screen w-screen place-items-center items-end  justify-between bg-gray-900">
@@ -38,7 +29,6 @@ const CV: NextPage = () => {
           onChange={(updatedUser: UserType) => setUser(updatedUser)}
           theme={theme}
           layout={layout}
-          ref={documentRef}
         />
       </div>
       <div className="flex h-full flex-col items-center justify-between">
@@ -48,7 +38,6 @@ const CV: NextPage = () => {
             downloadFileName={
               user.name ? `${user.name}-cv` : `${Date.now()}-cv`
             }
-            ref={documentRef}
           />
         </div>
 

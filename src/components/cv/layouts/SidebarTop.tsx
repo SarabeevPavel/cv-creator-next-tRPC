@@ -23,74 +23,72 @@ export const SidebarTop: React.FC<SidebarTopProps> = ({
   projects,
 }) => {
   return (
-    <div>
+    <div
+      id="cv-document"
+      className="flex h-full w-full flex-col overflow-hidden"
+    >
       <div
-        id="cv-document"
-        className="flex h-[1000px] w-[700px] flex-col overflow-hidden"
+        role="user-photo-info"
+        className="max-h-1/3 flex h-1/3 w-full"
+        style={{
+          backgroundColor: theme.additionalColor,
+          color: theme.mainColor,
+        }}
       >
         <div
-          role="user-photo-info"
-          className="max-h-1/3 flex h-1/3 w-full"
+          role="avatar"
+          className="grid h-full w-1/3 place-items-center overflow-hidden"
+        >
+          <div className="h-4/5 w-4/5 overflow-hidden rounded-2xl">
+            {avatar}
+          </div>
+        </div>
+        <div className="w-2/3">
+          <div role="name,position" className="h-1/8 container">
+            {profile}
+          </div>
+          <div role="summary" className="container w-full">
+            {summary}
+          </div>
+        </div>
+      </div>
+      <div className="flex h-full">
+        <div
+          role="contacts-languages-stack"
+          className="w-1/3"
           style={{
             backgroundColor: theme.additionalColor,
             color: theme.mainColor,
           }}
         >
-          <div
-            role="avatar"
-            className="grid h-full w-1/3 place-items-center overflow-hidden"
-          >
-            <div className="h-4/5 w-4/5 overflow-hidden rounded-2xl">
-              {avatar}
-            </div>
+          <div role="contacts" className="container ">
+            {contacts}
           </div>
-          <div className="w-2/3">
-            <div role="name,position" className="h-1/8 container">
-              {profile}
-            </div>
-            <div role="summary" className="container w-full">
-              {summary}
-            </div>
+
+          <div role="languages" className="container ">
+            {languages}
           </div>
         </div>
-        <div className="flex h-full">
+
+        <div
+          role="projects"
+          className="w-2/3"
+          style={{
+            backgroundColor: theme.additionalColor,
+          }}
+        >
           <div
-            role="contacts-languages-stack"
-            className="w-1/3"
+            className="h-full w-full rounded-tl-xl"
             style={{
-              backgroundColor: theme.additionalColor,
-              color: theme.mainColor,
+              backgroundColor: theme.mainColor,
+              color: theme.additionalColor,
             }}
           >
-            <div role="contacts" className="container ">
-              {contacts}
+            <div role="stack" className="container grid grid-cols-1">
+              {stack}
             </div>
-
-            <div role="languages" className="container ">
-              {languages}
-            </div>
-          </div>
-
-          <div
-            role="projects"
-            className="w-2/3"
-            style={{
-              backgroundColor: theme.additionalColor,
-            }}
-          >
-            <div
-              className="h-full w-full rounded-tl-xl"
-              style={{
-                backgroundColor: theme.mainColor,
-                color: theme.additionalColor,
-              }}
-            >
-              <div role="stack" className="container grid grid-cols-1">
-                {stack}
-              </div>
-              <div role="projects" className="container">
-                {projects}
-              </div>
+            <div role="projects" className="container">
+              {projects}
             </div>
           </div>
         </div>

@@ -5,6 +5,5 @@ export * from "./Summary";
 export * from "./Viewer";
 export * from "./avatar";
 export * from "./layouts";
-export * from "./pdfComponent";
 export * from "./projects";
 export * from "./stack";

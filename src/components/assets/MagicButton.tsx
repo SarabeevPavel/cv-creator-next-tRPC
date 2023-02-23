@@ -110,6 +110,9 @@ export const MagicButton: React.FC<MagicButtonProps> = ({ user, onChange }) => {
           onError: () => {
             setIsError(true);
           },
+          onSettled: () => {
+            setIsLoading(false);
+          },
         }
       );
     }
